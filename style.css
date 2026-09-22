@@ -225,7 +225,7 @@ h3 {
   border-radius: 15px;
   overflow: hidden;
   padding: 0;
-  text-align: left;
+  text-align: center;
   box-shadow: 0 2px 9px #0001;
   cursor: pointer;
 }
@@ -589,44 +589,48 @@ h3 {
 
 
 /* =========================
-   排名標籤
-   不佔名字的置中位置
+   TOP9 排名標籤
+   圖片左上角
 ========================= */
 
 .resultGrid .rankBadge,
 .resultCard .rankBadge {
   position: absolute !important;
 
-  left: 5px;
-  top: 9px;
+  left: 8px;
+  top: 8px;
 
-  display: inline-block;
+  z-index: 20;
 
-  z-index: 10;
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+
   margin: 0;
-  padding: 4px 6px;
+  padding: 0;
 
   background: #fff;
   color: #30242b;
 
-  border-radius: 99px;
+  border-radius: 50%;
 
-  font-size: 9px;
+  font-size: 13px;
   font-weight: 800;
-  line-height: 1.2;
+  line-height: 1;
 
   white-space: nowrap;
 
   transform: none !important;
 }
 
+/* 第1名 */
 .resultGrid .card:first-child .rankBadge {
   background: #d9aa32;
   color: #fff;
 }
-```
-
 
 /* =========================
    排名表
