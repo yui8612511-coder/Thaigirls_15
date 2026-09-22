@@ -874,21 +874,18 @@ function zhRank(i) {
 
 function resultCard(id, rank) {
   const a = get(id);
+  const badge = rank === 0 ? "第一名" : `第${rank + 1}名`;
 
   return `
-    <div class="card resultCard">
-      <div class="photo">
-        ${photo(a).match(/<img[^>]*>/)?.[0] || ""}
-        <span class="rankNumber">${rank + 1}</span>
-      </div>
-
+    <div class="card resultCard ${rank === 0 ? "firstPlace" : ""}">
+      ${photo(a)}
       <div class="resultNameRow">
+        <span class="rankBadge">${badge}</span>
         <span class="resultName">${a.name}</span>
       </div>
     </div>
   `;
 }
-
 
   $("#resultList").innerHTML =
     ids
