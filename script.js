@@ -105,10 +105,16 @@ const A = NAMES.map((x, i) => ({
   image: x[1]
 }));
 
+
+/* =========================================================
+   GAME STATE
+========================================================= */
+
 let S = {
   pre: [],
   candidates: [],
   score: {},
+
   round: 1,
   pairs: [],
   pi: 0,
@@ -125,6 +131,11 @@ let S = {
   finalRunIndex: 0,
   finalJob: null
 };
+
+
+/* =========================================================
+   BASIC
+========================================================= */
 
 const $ = s => document.querySelector(s);
 
@@ -172,7 +183,7 @@ function get(id) {
   return A.find(a => a.id === Number(id));
 }
 
-function color(i) {
+function c(i) {
   return [
     "#a87388",
     "#c18c8e",
@@ -187,9 +198,14 @@ function color(i) {
   ][i % 10];
 }
 
-function photo(a) {
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+function init(a) {
   return `
-    <div class="photo" style="background:${color(a.id)}">
+    <div class="photo" style="background:${c(a.id)}">
       <img
         src="${a.image}"
         alt="${a.name}"
@@ -199,53 +215,94 @@ function photo(a) {
   `;
 }
 
-function preCard(id) {
+
+/* =========================================================
+   NORMAL CARD
+   圖片 + 名字在圖片下面
+========================================================= */
+
+function card(id, cls = "card") {
   const a = get(id);
 
   return `
-    <button class="card preCard" data-id="${id}">
-      ${photo(a)}
+    <button class="${cls}" data-id="${id}">
+      ${init(a)}
       <div class="name">${a.name}</div>
     </button>
   `;
 }
 
-function duelCard(id) {
+
+/* =========================================================
+   FINAL RANK CARD
+   圖片右上角顯示 1～9
+========================================================= */
+
+function rankCard(id, rank) {
   const a = get(id);
 
   return `
-    <button class="duelCard" data-id="${id}">
-      ${photo(a)}
-      <div class="duelName">${a.name}</div>
-    </button>
-  `;
-}
+    <div class="card resultCard">
 
-function resultCard(id, rank) {
-  const a = get(id);
+      <div
+        class="photo resultPhoto"
+        style="
+          background:${c(a.id)};
+          position:relative;
+        "
+      >
 
-  const badge =
-    rank === 0
-      ? "第一名"
-      : `第${rank + 1}名`;
+        <img
+          src="${a.image}"
+          alt="${a.name}"
+          onerror="this.style.display='none'"
+        >
 
-  return `
-    <div class="card resultCard ${rank === 0 ? "firstPlace" : ""}">
-      ${photo(a)}
+        <span
+          class="finalRank"
+          style="
+            position:absolute;
+            top:8px;
+            right:8px;
+            width:28px;
+            height:28px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#fff;
+            color:#30242b;
+            border-radius:50%;
+            font-size:13px;
+            font-weight:900;
+            line-height:1;
+            z-index:5;
+            box-shadow:0 2px 6px rgba(0,0,0,.12);
+          "
+        >
+          ${rank + 1}
+        </span>
 
-      <div class="resultNameRow">
-        <span class="rankBadge">${badge}</span>
-        <span class="resultName">${a.name}</span>
       </div>
+
+      <div class="name">
+        ${a.name}
+      </div>
+
     </div>
   `;
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 function resetAll() {
   S = {
     pre: [],
     candidates: [],
     score: {},
+
     round: 1,
     pairs: [],
     pi: 0,
@@ -266,16 +323,23 @@ function resetAll() {
   show("home");
 }
 
+
+/* =========================================================
+   PRE-SELECTION
+========================================================= */
+
 let groups = [];
 let gi = 0;
 let picked = [];
 
 function makeGroups() {
+
   groups = [];
 
   let i = 0;
 
   while (i < A.length) {
+
     const left = A.length - i;
 
     const n =
@@ -283,23 +347,28 @@ function makeGroups() {
         ? 3
         : 4;
 
-    groups.push(A.slice(i, i + n));
+    groups.push(
+      A.slice(i, i + n)
+    );
 
     i += n;
   }
 }
 
 function startPre() {
+
   makeGroups();
 
   gi = 0;
   S.pre = [];
 
   renderPre();
+
   show("pre");
 }
 
 function renderPre() {
+
   const g = groups[gi];
 
   $("#preTitle").textContent =
@@ -308,43 +377,43 @@ function renderPre() {
   picked = [];
 
   $("#preGrid").innerHTML =
-    g.map(a => preCard(a.id)).join("");
+    g.map(a => card(a.id)).join("");
 
   $("#preCount").textContent =
     "目前選擇 0 / 3";
 
   document
-    .querySelectorAll("#preGrid .preCard")
-    .forEach(card => {
+    .querySelectorAll("#preGrid .card")
+    .forEach(x => {
 
-      card.onclick = () => {
+      x.onclick = () => {
 
         const id =
-          Number(card.dataset.id);
+          Number(x.dataset.id);
 
         if (picked.includes(id)) {
 
           picked =
             picked.filter(v => v !== id);
 
-          card.classList.remove("selected");
+          x.classList.remove("selected");
 
-          card.querySelector(".check")?.remove();
+          x.querySelector(".check")?.remove();
 
         } else if (picked.length < 3) {
 
           picked.push(id);
 
-          card.classList.add("selected");
+          x.classList.add("selected");
 
-          const check =
+          const z =
             document.createElement("span");
 
-          check.className = "check";
-          check.textContent = "✓";
+          z.className = "check";
+          z.textContent = "✓";
 
-          card.querySelector(".photo")
-            .append(check);
+          x.querySelector(".photo")
+            ?.append(z);
 
         } else {
 
@@ -357,7 +426,47 @@ function renderPre() {
     });
 }
 
+
+/* =========================================================
+   PRE NEXT
+========================================================= */
+
+function preNextAction() {
+
+  if (picked.length === 0) {
+    toast("請至少選擇1人");
+    return;
+  }
+
+  S.pre.push(...picked);
+
+  gi++;
+
+  if (gi < groups.length) {
+
+    renderPre();
+
+  } else {
+
+    S.candidates =
+      [...new Set(S.pre)];
+
+    if ($("#preN")) {
+      $("#preN").textContent =
+        S.candidates.length;
+    }
+
+    show("preDone");
+  }
+}
+
+
+/* =========================================================
+   PAIR MAKING
+========================================================= */
+
 function pairList(ids) {
+
   const x =
     [...ids].sort(
       () => Math.random() - 0.5
@@ -370,6 +479,7 @@ function pairList(ids) {
     i < x.length - 1;
     i += 2
   ) {
+
     p.push([
       x[i],
       x[i + 1]
@@ -377,6 +487,7 @@ function pairList(ids) {
   }
 
   if (x.length % 2) {
+
     p.push([
       x[x.length - 1],
       x[0]
@@ -386,7 +497,13 @@ function pairList(ids) {
   return p;
 }
 
+
+/* =========================================================
+   MAIN — 2 CHOICE
+========================================================= */
+
 function startMain() {
+
   S.score = {};
 
   S.candidates.forEach(id => {
@@ -401,6 +518,7 @@ function startMain() {
 }
 
 function prepareMain() {
+
   const sorted =
     [...S.candidates].sort(
       (a, b) =>
@@ -419,19 +537,25 @@ function prepareMain() {
 }
 
 function renderMain() {
+
   if (S.pi >= S.pairs.length) {
 
     if (S.round < 3) {
+
       S.round++;
+
       prepareMain();
+
     } else {
+
       show("mainDone");
     }
 
     return;
   }
 
-  const p = S.pairs[S.pi];
+  const p =
+    S.pairs[S.pi];
 
   $("#mainTitle").textContent =
     `ROUND ${S.round} / 3`;
@@ -445,27 +569,37 @@ function renderMain() {
       : "② 接下來你比較喜歡哪一位？";
 
   $("#mainPair").innerHTML =
-    p.map(id => duelCard(id)).join("");
+    p.map(
+      id => card(id, "duel")
+    ).join("");
 
   document
-    .querySelectorAll("#mainPair .duelCard")
+    .querySelectorAll("#mainPair .duel")
     .forEach(x => {
 
       x.onclick = () =>
-        mainPick(Number(x.dataset.id));
+        mainPick(
+          Number(x.dataset.id)
+        );
 
     });
 }
 
 function mainPick(id) {
+
   if (S.first === null) {
+
     S.first = id;
+
     renderMain();
+
     return;
   }
 
   if (id === S.first) {
+
     toast("請選擇其他候選人");
+
     return;
   }
 
@@ -478,7 +612,13 @@ function mainPick(id) {
   renderMain();
 }
 
+
+/* =========================================================
+   LAST ROUND
+========================================================= */
+
 function startLast() {
+
   const sorted =
     [...S.candidates].sort(
       (a, b) =>
@@ -511,8 +651,14 @@ function startLast() {
 }
 
 function renderLast() {
-  if (S.li >= S.lastPairs.length) {
+
+  if (
+    S.li >=
+    S.lastPairs.length
+  ) {
+
     finishLast();
+
     return;
   }
 
@@ -520,26 +666,37 @@ function renderLast() {
     S.lastPairs[S.li];
 
   $("#lastPair").innerHTML =
-    p.map(id => duelCard(id)).join("");
+    p.map(
+      id => card(id, "duel")
+    ).join("");
 
   document
-    .querySelectorAll("#lastPair .duelCard")
+    .querySelectorAll("#lastPair .duel")
     .forEach(x => {
 
       x.onclick = () =>
-        lastPick(Number(x.dataset.id));
+        lastPick(
+          Number(x.dataset.id)
+        );
 
     });
 }
 
 function lastPick(id) {
+
   if (S.first === null) {
+
     S.first = id;
+
+    renderLast();
+
     return;
   }
 
   if (id === S.first) {
+
     toast("請選擇其他候選人");
+
     return;
   }
 
@@ -553,6 +710,7 @@ function lastPick(id) {
 }
 
 function finishLast() {
+
   const sorted =
     [...S.candidates].sort(
       (a, b) =>
@@ -568,11 +726,20 @@ function finishLast() {
   show("finalists");
 }
 
+
+/* =========================================================
+   FINAL
+   18 → 9 → 5 → 3 → 2 → 1
+========================================================= */
+
 function startFinal() {
+
   S.ranking = [];
 
   S.finalRuns =
-    S.finalists.map(id => [id]);
+    S.finalists.map(
+      id => [id]
+    );
 
   S.finalNextRuns = [];
   S.finalRunIndex = 0;
@@ -584,9 +751,14 @@ function startFinal() {
 }
 
 function beginNextFinalLevel() {
-  if (S.finalRuns.length <= 1) {
+
+  if (
+    S.finalRuns.length <= 1
+  ) {
+
     S.ranking =
-      S.finalRuns[0].slice(0, 9);
+      S.finalRuns[0]
+        .slice(0, 9);
 
     return result();
   }
@@ -599,9 +771,14 @@ function beginNextFinalLevel() {
 }
 
 function nextFinal() {
-  if (S.finalRuns.length <= 1) {
+
+  if (
+    S.finalRuns.length <= 1
+  ) {
+
     S.ranking =
-      S.finalRuns[0].slice(0, 9);
+      S.finalRuns[0]
+        .slice(0, 9);
 
     return result();
   }
@@ -620,7 +797,9 @@ function nextFinal() {
   if (!S.finalJob) {
 
     const left =
-      S.finalRuns[S.finalRunIndex];
+      S.finalRuns[
+        S.finalRunIndex
+      ];
 
     const right =
       S.finalRuns[
@@ -639,10 +818,13 @@ function nextFinal() {
     }
 
     S.finalJob = {
+
       left: [...left],
       right: [...right],
+
       i: 0,
       j: 0,
+
       out: []
     };
   }
@@ -650,13 +832,18 @@ function nextFinal() {
   const j =
     S.finalJob;
 
-  if (j.i >= j.left.length) {
+  if (
+    j.i >=
+    j.left.length
+  ) {
 
     j.out.push(
       ...j.right.slice(j.j)
     );
 
-    S.finalNextRuns.push(j.out);
+    S.finalNextRuns.push(
+      j.out
+    );
 
     S.finalRunIndex += 2;
     S.finalJob = null;
@@ -664,13 +851,18 @@ function nextFinal() {
     return nextFinal();
   }
 
-  if (j.j >= j.right.length) {
+  if (
+    j.j >=
+    j.right.length
+  ) {
 
     j.out.push(
       ...j.left.slice(j.i)
     );
 
-    S.finalNextRuns.push(j.out);
+    S.finalNextRuns.push(
+      j.out
+    );
 
     S.finalRunIndex += 2;
     S.finalJob = null;
@@ -685,15 +877,17 @@ function nextFinal() {
     j.right[j.j];
 
   $("#finalPair").innerHTML =
-    duelCard(a) +
-    duelCard(b);
+    card(a, "duel") +
+    card(b, "duel");
 
   if ($("#finalPrompt")) {
+
     $("#finalPrompt").textContent =
-      "你比較喜歡誰？";
+      "你比較喜歡哪一位的臉？";
   }
 
   if ($("#finalProgress")) {
+
     $("#finalProgress").textContent =
       `最終戰比較 · ${
         S.finalRunIndex / 2 + 1
@@ -701,16 +895,19 @@ function nextFinal() {
   }
 
   document
-    .querySelectorAll("#finalPair .duelCard")
+    .querySelectorAll("#finalPair .duel")
     .forEach(x => {
 
       x.onclick = () =>
-        finalPick(Number(x.dataset.id));
+        finalPick(
+          Number(x.dataset.id)
+        );
 
     });
 }
 
 function finalPick(id) {
+
   const j =
     S.finalJob;
 
@@ -724,17 +921,13 @@ function finalPick(id) {
 
   if (id === a) {
 
-    j.out.push(
-      j.left[j.i]
-    );
+    j.out.push(a);
 
     j.i++;
 
   } else if (id === b) {
 
-    j.out.push(
-      j.right[j.j]
-    );
+    j.out.push(b);
 
     j.j++;
 
@@ -745,122 +938,102 @@ function finalPick(id) {
 
   nextFinal();
 }
-function resultCard(id, rank) {
-  const a = get(id);
 
-  return `
-    <div class="card resultCard">
 
-      <div class="photo resultPhoto">
-        <img
-          src="${a.image}"
-          alt="${a.name}"
-          onerror="this.style.display='none'"
-        >
+/* =========================================================
+   RESULT
+========================================================= */
 
-        <span class="rankBadge">
-          ${rank + 1}
-        </span>
-      </div>
-
-      <div class="resultNameRow">
-        <span class="resultName">
-          ${a.name}
-        </span>
-      </div>
-
-    </div>
-  `;
-}
-function zhRank(i) {
-  return [
-    "第一名",
-    "第二名",
-    "第三名",
-    "第四名",
-    "第五名",
-    "第六名",
-    "第七名",
-    "第八名",
-    "第九名"
-  ][i] ||
-    `第${i + 1}名`;
-}
 function result() {
-  const grid = document.querySelector(".resultGrid");
+
+  const ids =
+    S.ranking.slice(0, 9);
+
+  const grid =
+    $("#resultGrid");
 
   if (!grid) {
-    console.error("找不到 .resultGrid");
+
+    console.error(
+      "找不到 #resultGrid"
+    );
+
     return;
   }
 
   grid.innerHTML =
-    S.ranking
-      .slice(0, 9)
-      .map((id, i) => resultCard(id, i))
-      .join("");
+    ids.map(
+      (id, i) =>
+        rankCard(id, i)
+    ).join("");
+
+
+  const list =
+    $("#resultList");
+
+  if (list) {
+
+    list.innerHTML =
+      ids.map(
+        (id, i) => `
+          <li>
+            <span>
+              ${i + 1} 位
+            </span>
+
+            <span>
+              ${get(id).name}
+            </span>
+          </li>
+        `
+      ).join("");
+  }
 
   show("result");
 }
+
+
+/* =========================================================
+   COPY RESULT
+========================================================= */
+
 async function copyResult() {
+
   const text =
     "我的泰國女藝人 顏值理想型 TOP9\n" +
+
     S.ranking
       .slice(0, 9)
       .map(
         (id, i) =>
-          `${zhRank(i)} ${get(id).name}`
+          `${i + 1} 位 ${get(id).name}`
       )
       .join("\n");
 
   try {
-    await navigator.clipboard.writeText(text);
+
+    await navigator.clipboard.writeText(
+      text
+    );
+
     toast("已複製結果 ♡");
+
   } catch (e) {
+
     toast("無法複製");
   }
 }
 
 
 /* =========================================================
-   PRE NEXT BUTTON
-   ========================================================= */
+   BUTTON
+========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+const preNext =
+  $("#preNext");
 
-  const preNext =
-    $("#preNext");
+if (preNext) {
 
-  if (preNext) {
-
-    preNext.onclick = () => {
-
-      if (picked.length === 0) {
-        toast("請至少選擇1人");
-        return;
-      }
-
-      S.pre.push(...picked);
-
-      gi++;
-
-      if (gi < groups.length) {
-
-        renderPre();
-
-      } else {
-
-        S.candidates =
-          [...new Set(S.pre)];
-
-        if ($("#preN")) {
-          $("#preN").textContent =
-            S.candidates.length;
-        }
-
-        show("preDone");
-      }
-    };
-  }
-
-});
+  preNext.onclick =
+    preNextAction;
+}
