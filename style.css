@@ -275,24 +275,30 @@ h3 {
    圖片下方中央
 ========================= */
 
-.card .name {
-  display: block;
-  width: 100%;
+.card .name,
+.preCard .name {
+  position: static !important;
+  display: block !important;
 
+  width: 100%;
   margin: 0;
+
   padding: 9px 9px 2px;
 
-  color: #30242b;
   background: #fff;
+  color: #30242b;
 
-  font-size: 13px;
+  font-size: 13px !important;
   font-weight: 800;
   line-height: 1.4;
 
   text-align: center;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  transform: none !important;
 }
 
 
@@ -324,6 +330,8 @@ h3 {
 ========================= */
 
 .group {
+  position: static !important;
+
   font-size: 9px;
   color: #9b8790;
   padding: 1px 9px 9px;
@@ -339,15 +347,21 @@ h3 {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+
   width: 100%;
   max-width: 720px;
+
   padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+
   background: #fffefdf2;
   border-top: 1px solid #eadde3;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   z-index: 10;
+
   font-size: 12px;
   color: #8e7b84;
 }
@@ -389,33 +403,34 @@ h3 {
    圖片下方中央
 ========================= */
 
-.duelName {
-  display: block;
-  width: 100%;
+.duelName,
+.duel button .duelName {
+  position: static !important;
+  display: block !important;
 
+  width: 100%;
   margin: 0;
+
   padding: 9px 9px 2px;
 
-  color: #30242b;
   background: #fff;
+  color: #30242b;
 
-  font-size: 13px;
+  font-size: 13px !important;
   font-weight: 800;
   line-height: 1.4;
 
   text-align: center;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  transform: none !important;
 }
 
 .duel button:hover {
   transform: translateY(-2px);
-}
-
-.undo {
-  display: block;
-  margin: 20px auto;
 }
 
 
@@ -456,8 +471,8 @@ h3 {
 
 #resultGrid,
 .resultGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 7px;
   width: 100%;
 }
@@ -465,7 +480,9 @@ h3 {
 .resultGrid .card {
   width: 100%;
   min-width: 0;
+
   border: 2px solid #e6dfe2;
+
   text-align: center;
   overflow: hidden;
 }
@@ -475,7 +492,9 @@ h3 {
 }
 
 
-/* TOP9 圖片 */
+/* =========================
+   TOP9 圖片
+========================= */
 
 .resultGrid .card .photo {
   width: 100%;
@@ -488,8 +507,11 @@ h3 {
    圖片下方中央
 ========================= */
 
-.resultGrid .resultNameRow {
-  display: flex;
+.resultGrid .resultNameRow,
+.resultCard .resultNameRow {
+  position: static !important;
+
+  display: flex !important;
   align-items: center;
   justify-content: center;
 
@@ -503,19 +525,26 @@ h3 {
   color: #30242b;
 
   text-align: center;
+
+  transform: none !important;
 }
 
 .resultGrid .resultName {
+  position: static !important;
+
   display: block;
+
   min-width: 0;
 
-  font-size: 13px;
+  font-size: 13px !important;
   font-weight: 800;
   line-height: 1.4;
 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  transform: none !important;
 }
 
 
@@ -524,16 +553,22 @@ h3 {
 ========================= */
 
 .rankBadge {
+  position: static !important;
+
   flex-shrink: 0;
+
   margin-right: 5px;
   padding: 4px 7px;
 
   background: #fff;
   color: #30242b;
+
   border-radius: 99px;
 
   font-size: 9px;
   font-weight: 800;
+
+  transform: none !important;
 }
 
 .resultGrid .card:first-child .rankBadge {
@@ -642,12 +677,12 @@ h3 {
   .name,
   .duelName,
   .resultName {
-    font-size: 13px;
+    font-size: 13px !important;
   }
 
   #resultGrid,
   .resultGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: 8px;
   }
 }
@@ -672,7 +707,7 @@ h3 {
   .name,
   .duelName,
   .resultName {
-    font-size: 13px;
+    font-size: 13px !important;
   }
 
   .steps span {
@@ -686,7 +721,7 @@ h3 {
 
   #resultGrid,
   .resultGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: 6px;
   }
 }
@@ -719,47 +754,3 @@ h3 {
   }
 }
 ```
-.card .name,
-.preCard .name,
-.duelCard .duelName,
-.resultCard .resultNameRow {
-  position: static !important;
-  left: auto !important;
-  right: auto !important;
-  top: auto !important;
-  bottom: auto !important;
-  transform: none !important;
-}
-
-.card .name,
-.preCard .name {
-  display: block !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  text-align: center !important;
-  font-size: 13px !important;
-  padding: 9px 9px 2px !important;
-  background: #fff !important;
-}
-
-.duelCard .duelName {
-  display: block !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  text-align: center !important;
-  font-size: 13px !important;
-  padding: 9px 9px 2px !important;
-  background: #fff !important;
-}
-
-.resultCard .resultNameRow {
-  display: flex !important;
-  position: static !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-  padding: 9px 6px 2px !important;
-  background: #fff !important;
-}
