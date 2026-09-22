@@ -222,26 +222,29 @@ function init(a) {
 ========================================================= */
 
 function card(id,cls="card",badge=""){
-  let a=get(id);
+  let a = get(id);
 
-  // 二選一：圖片 + 下方名字
+  // 二選一專用卡片
   if(cls === "duel"){
-    return `<button class="duel" data-id="${id}">
-      ${init(a)}
-      <div class="name">${a.name}</div>
-    </button>`;
+    return `
+      <button class="duelCard" data-id="${id}">
+        ${init(a)}
+        <div class="duelName">${a.name}</div>
+      </button>
+    `;
   }
 
-  // TOP9：圖片 + 名次＋名字
-  return `<button class="${cls}" data-id="${id}">
-    ${init(a)}
-    <div class="nameRow">
-      ${badge ? `<span class="badge">${badge}</span>` : ""}
-      <div class="name">${a.name}</div>
-    </div>
-  </button>`;
+  // TOP9 卡片
+  return `
+    <button class="${cls}" data-id="${id}">
+      ${init(a)}
+      <div class="nameRow">
+        ${badge ? `<span class="badge">${badge}</span>` : ""}
+        <div class="name">${a.name}</div>
+      </div>
+    </button>
+  `;
 }
-
 /* =========================================================
    FINAL RANK CARD
    圖片右上角顯示 1～9
