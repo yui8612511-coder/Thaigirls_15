@@ -221,8 +221,17 @@ function init(a) {
    圖片 + 名字在圖片下面
 ========================================================= */
 
-function card(id, cls = "card") {
-  const a = get(id);
+function card(id,cls="card"){
+  const a=get(id);
+
+  if(cls==="duel"){
+    return `
+      <button class="duel" data-id="${id}">
+        ${init(a)}
+        <div class="name">${a.name}</div>
+      </button>
+    `;
+  }
 
   return `
     <button class="${cls}" data-id="${id}">
@@ -231,7 +240,6 @@ function card(id, cls = "card") {
     </button>
   `;
 }
-
 
 /* =========================================================
    FINAL RANK CARD
