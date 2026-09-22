@@ -120,5 +120,5 @@ function finalPick(id){
 }
 
 function zhRank(i){return ["第一名","第二名","第三名","第四名","第五名","第六名","第七名","第八名","第九名"][i]||`第${i+1}名`}
-function result(){let ids=S.ranking.slice(0,9);$("#resultGrid").innerHTML=ids.map((id,i)=>{let a=get(id);return `<div class="card">${init(a,i===0?"👑 第一名":zhRank(i))}<div class="name">${a.name}</div></div>`}).join("");$("#resultList").innerHTML=ids.map((id,i)=>`<li><span>${i===0?"👑 ":""}${zhRank(i)}</span><span>${get(id).name}</span></li>`).join("");show("result")}
+function result(){let ids=S.ranking.slice(0,9);$("#resultGrid").innerHTML=ids.map((id,i)=>{let a=get(id);return `<div class="card">${init(a,i===0?"第一名":zhRank(i))}<div class="name">${a.name}</div></div>`}).join("");$("#resultList").innerHTML=ids.map((id,i)=>`<li><span>${i===0?"👑 ":""}${zhRank(i)}</span><span>${get(id).name}</span></li>`).join("");show("result")}
 async function copyResult(){let t="我的泰國女藝人 喜歡的臉 TOP9 👑\n"+S.ranking.slice(0,9).map((id,i)=>`${zhRank(i)} ${get(id).name}`).join("\n");try{await navigator.clipboard.writeText(t);toast("已複製結果 ♡")}catch(e){toast("無法複製")}}
