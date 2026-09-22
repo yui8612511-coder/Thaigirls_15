@@ -719,3 +719,47 @@ h3 {
   }
 }
 ```
+.card .name,
+.preCard .name,
+.duelCard .duelName,
+.resultCard .resultNameRow {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+}
+
+.card .name,
+.preCard .name {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  font-size: 13px !important;
+  padding: 9px 9px 2px !important;
+  background: #fff !important;
+}
+
+.duelCard .duelName {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  font-size: 13px !important;
+  padding: 9px 9px 2px !important;
+  background: #fff !important;
+}
+
+.resultCard .resultNameRow {
+  display: flex !important;
+  position: static !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 9px 6px 2px !important;
+  background: #fff !important;
+}
