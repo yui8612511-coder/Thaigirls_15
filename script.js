@@ -13,7 +13,26 @@ function init(a){
   </div>`;
 }
 function get(id){return A.find(a=>a.id===id)}
-function card(id,cls="card"){let a=get(id);return `<button class="${cls}" data-id="${id}">${init(a)}<div class="name">${a.name}</div></button>`}
+function card(id,cls="card",badge=""){
+  let a=get(id);
+
+  // 二選一：圖片 + 下方名字
+  if(cls === "duel"){
+    return `<button class="duel" data-id="${id}">
+      ${init(a)}
+      <div class="name">${a.name}</div>
+    </button>`;
+  }
+
+  // TOP9：圖片 + 名次＋名字
+  return `<button class="${cls}" data-id="${id}">
+    ${init(a)}
+    <div class="nameRow">
+      ${badge ? `<span class="badge">${badge}</span>` : ""}
+      <div class="name">${a.name}</div>
+    </div>
+  </button>`;
+}
 function resetAll(){S={pre:[],candidates:[],score:{},round:1,pairs:[],pi:0,first:null,finalists:[],lastPairs:[],li:0,ranking:[],pool:[]};show("home")}
 
 let groups=[],gi=0,picked=[];
