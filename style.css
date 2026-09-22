@@ -271,50 +271,28 @@ h3 {
 
 
 /* =========================
-   所有人名字統一設定
-   跟預選 .name 一樣
+   預選名字
+   圖片下方中央
 ========================= */
-
-.name,
-.duelName,
-.resultName {
-  font-size: 13px;
-  font-weight: 800;
-  line-height: 1.4;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-
-/* =========================
-   預選／一般人物名字
-   名字放在圖片正中央
-========================= */
-
-.card .photo {
-  position: relative;
-}
 
 .card .name {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: calc(100% - 18px);
+  display: block;
+  width: 100%;
 
   margin: 0;
   padding: 9px 9px 2px;
 
-  color: #fff;
-  background: transparent;
+  color: #30242b;
+  background: #fff;
+
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.4;
 
   text-align: center;
-
-  text-shadow:
-    0 1px 3px #000,
-    0 2px 8px #0008;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
@@ -406,27 +384,29 @@ h3 {
 }
 
 
-/* PK 名字放圖片正中央 */
+/* =========================
+   PK 名字
+   圖片下方中央
+========================= */
 
 .duelName {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  display: block;
+  width: 100%;
 
-  width: calc(100% - 18px);
   margin: 0;
   padding: 9px 9px 2px;
 
-  color: #fff;
-  background: transparent;
+  color: #30242b;
+  background: #fff;
+
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.4;
 
   text-align: center;
-
-  text-shadow:
-    0 1px 3px #000,
-    0 2px 8px #0008;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .duel button:hover {
@@ -467,7 +447,7 @@ h3 {
 
 /* =========================
    最終 TOP9
-   固定九宮格 3 × 3
+   九宮格 3 × 3
 ========================= */
 
 .resultHead {
@@ -480,11 +460,9 @@ h3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 7px;
   width: 100%;
-  min-width: 0;
 }
 
 .resultGrid .card {
-  position: relative;
   width: 100%;
   min-width: 0;
   border: 2px solid #e6dfe2;
@@ -505,45 +483,45 @@ h3 {
 }
 
 
-/* TOP9 名字置中在圖片 */
+/* =========================
+   TOP9 名字
+   圖片下方中央
+========================= */
 
 .resultGrid .resultNameRow {
-  position: absolute;
-  z-index: 4;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: calc(100% - 12px);
+  width: 100%;
   min-width: 0;
 
   margin: 0;
-  padding: 0;
+  padding: 9px 6px 2px;
 
-  color: #fff;
-  background: transparent;
+  background: #fff;
+  color: #30242b;
 
   text-align: center;
-
-  text-shadow:
-    0 1px 3px #000,
-    0 2px 8px #0008;
 }
 
 .resultGrid .resultName {
   display: block;
   min-width: 0;
-  flex: 1;
 
-  text-align: center;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.4;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
-/* 排名標籤 */
+/* =========================
+   排名標籤
+========================= */
 
 .rankBadge {
   flex-shrink: 0;
