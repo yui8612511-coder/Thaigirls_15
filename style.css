@@ -379,7 +379,7 @@ h3 {
 
 
 /* =========================
-   PK：兩人並排
+   PK
 ========================= */
 
 #mainPair,
@@ -387,9 +387,8 @@ h3 {
 #finalPair {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 20px;
   width: 100%;
-  max-width: 680px;
   margin: 25px auto 0;
 }
 
@@ -398,11 +397,11 @@ h3 {
 #finalPair .duel {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
 
   width: 100%;
   min-width: 0;
 
+  margin: 0;
   padding: 0;
 
   border: 2px solid transparent;
@@ -416,53 +415,59 @@ h3 {
   text-align: center;
 }
 
-/* PK 圖片放大 */
+/* 圖片 */
 #mainPair .duel .photo,
 #lastPair .duel .photo,
 #finalPair .duel .photo {
   width: 100%;
   aspect-ratio: 3 / 4;
+  position: relative;
+  overflow: hidden;
 }
 
-/* 圖片 */
+/* 圖片本身 */
 #mainPair .duel .photo img,
 #lastPair .duel .photo img,
 #finalPair .duel .photo img {
   position: absolute;
+  inset: 0;
+
   width: 100%;
   height: 100%;
+
   object-fit: cover;
 }
 
-/* ★ 名字強制放在圖片下面 */
+/* ★ 名字 */
 #mainPair .duel .name,
 #lastPair .duel .name,
 #finalPair .duel .name {
   position: static !important;
+  inset: auto !important;
 
   display: block !important;
 
   width: 100%;
+  height: auto;
 
-  margin: 0;
-  padding: 10px 8px;
+  margin: 0 !important;
+  padding: 10px 6px !important;
 
-  background: #fff;
-  color: #30242b;
+  background: #fff !important;
+  color: #30242b !important;
 
   font-size: 16px !important;
   font-weight: 800;
-  line-height: 1.4;
 
+  line-height: 1.4;
   text-align: center;
+
+  transform: none !important;
 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  transform: none !important;
 }
-
 /* =========================
    狀態
 ========================= */
