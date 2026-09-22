@@ -502,6 +502,7 @@ h3 {
 }
 
 
+```css
 /* =========================
    TOP9 名字
    圖片下方中央
@@ -509,17 +510,15 @@ h3 {
 
 .resultGrid .resultNameRow,
 .resultCard .resultNameRow {
-  position: static !important;
+  position: relative !important;
 
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
+  display: block !important;
 
   width: 100%;
   min-width: 0;
 
   margin: 0;
-  padding: 9px 6px 2px;
+  padding: 9px 5px 2px;
 
   background: #fff;
   color: #30242b;
@@ -529,16 +528,23 @@ h3 {
   transform: none !important;
 }
 
+
+/* 名字永遠以整張圖片的中央為基準 */
 .resultGrid .resultName {
   position: static !important;
 
   display: block;
 
+  width: 100%;
   min-width: 0;
+
+  padding: 0 2px;
 
   font-size: 13px !important;
   font-weight: 800;
   line-height: 1.4;
+
+  text-align: center;
 
   white-space: nowrap;
   overflow: hidden;
@@ -550,15 +556,20 @@ h3 {
 
 /* =========================
    排名標籤
+   不佔名字的置中位置
 ========================= */
 
-.rankBadge {
-  position: static !important;
+.resultGrid .rankBadge,
+.resultCard .rankBadge {
+  position: absolute !important;
 
-  flex-shrink: 0;
+  left: 5px;
+  top: 9px;
 
-  margin-right: 5px;
-  padding: 4px 7px;
+  display: inline-block;
+
+  margin: 0;
+  padding: 4px 6px;
 
   background: #fff;
   color: #30242b;
@@ -567,6 +578,9 @@ h3 {
 
   font-size: 9px;
   font-weight: 800;
+  line-height: 1.2;
+
+  white-space: nowrap;
 
   transform: none !important;
 }
@@ -575,6 +589,7 @@ h3 {
   background: #d9aa32;
   color: #fff;
 }
+```
 
 
 /* =========================
