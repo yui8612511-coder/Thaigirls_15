@@ -1,12 +1,6 @@
-```js
 /* =========================================================
    THAI GIRLS — TOP9
    完整版 script.js
-========================================================= */
-
-
-/* =========================================================
-   人物資料
 ========================================================= */
 
 const NAMES = [
@@ -104,18 +98,12 @@ const NAMES = [
   ['Ploy', 'images/ploy.jpg']
 ];
 
-
 const A = NAMES.map((x, i) => ({
   id: i,
   name: x[0],
   group: "",
   image: x[1]
 }));
-
-
-/* =========================================================
-   全域狀態
-========================================================= */
 
 let S = {
   pre: [],
@@ -138,11 +126,6 @@ let S = {
   finalJob: null
 };
 
-
-/* =========================================================
-   基本工具
-========================================================= */
-
 const $ = s => document.querySelector(s);
 
 const screens = [
@@ -160,31 +143,24 @@ const screens = [
   "result"
 ];
 
-
 function show(id) {
-
   screens.forEach(x => {
-
     const el = $("#" + x);
 
     if (el) {
       el.classList.toggle("hidden", x !== id);
     }
-
   });
 
   window.scrollTo(0, 0);
 }
 
-
 function toast(t) {
-
   const el = $("#toast");
 
   if (!el) return;
 
   el.textContent = t;
-
   el.classList.add("show");
 
   setTimeout(() => {
@@ -192,15 +168,11 @@ function toast(t) {
   }, 1400);
 }
 
-
 function get(id) {
-
   return A.find(a => a.id === Number(id));
 }
 
-
 function color(i) {
-
   return [
     "#a87388",
     "#c18c8e",
@@ -215,18 +187,7 @@ function color(i) {
   ][i % 10];
 }
 
-
-/* =========================================================
-   HTML 元件
-========================================================= */
-
-
-/* ---------------------------------------------------------
-   單純照片
---------------------------------------------------------- */
-
 function photo(a) {
-
   return `
     <div class="photo" style="background:${color(a.id)}">
       <img
@@ -238,13 +199,7 @@ function photo(a) {
   `;
 }
 
-
-/* ---------------------------------------------------------
-   預選卡片
---------------------------------------------------------- */
-
 function preCard(id) {
-
   const a = get(id);
 
   return `
@@ -255,13 +210,7 @@ function preCard(id) {
   `;
 }
 
-
-/* ---------------------------------------------------------
-   二選一卡片
---------------------------------------------------------- */
-
 function duelCard(id) {
-
   const a = get(id);
 
   return `
@@ -272,14 +221,7 @@ function duelCard(id) {
   `;
 }
 
-
-/* ---------------------------------------------------------
-   TOP9 卡片
-   名字在圖片下方置中
---------------------------------------------------------- */
-
 function resultCard(id, rank) {
-
   const a = get(id);
 
   const badge =
@@ -299,13 +241,7 @@ function resultCard(id, rank) {
   `;
 }
 
-
-/* =========================================================
-   RESET
-========================================================= */
-
 function resetAll() {
-
   S = {
     pre: [],
     candidates: [],
@@ -330,24 +266,16 @@ function resetAll() {
   show("home");
 }
 
-
-/* =========================================================
-   預選
-========================================================= */
-
 let groups = [];
 let gi = 0;
 let picked = [];
 
-
 function makeGroups() {
-
   groups = [];
 
   let i = 0;
 
   while (i < A.length) {
-
     const left = A.length - i;
 
     const n =
@@ -361,23 +289,17 @@ function makeGroups() {
   }
 }
 
-
 function startPre() {
-
   makeGroups();
 
   gi = 0;
-
   S.pre = [];
 
   renderPre();
-
   show("pre");
 }
 
-
 function renderPre() {
-
   const g = groups[gi];
 
   $("#preTitle").textContent =
@@ -419,7 +341,6 @@ function renderPre() {
             document.createElement("span");
 
           check.className = "check";
-
           check.textContent = "✓";
 
           card.querySelector(".photo")
@@ -436,43 +357,7 @@ function renderPre() {
     });
 }
 
-
-$("#preNext").onclick = () => {
-
-  if (picked.length === 0) {
-
-    toast("請至少選擇1人");
-
-    return;
-  }
-
-  S.pre.push(...picked);
-
-  gi++;
-
-  if (gi < groups.length) {
-
-    renderPre();
-
-  } else {
-
-    S.candidates =
-      [...new Set(S.pre)];
-
-    $("#preN").textContent =
-      S.candidates.length;
-
-    show("preDone");
-  }
-};
-
-
-/* =========================================================
-   配對
-========================================================= */
-
 function pairList(ids) {
-
   const x =
     [...ids].sort(
       () => Math.random() - 0.5
@@ -485,7 +370,6 @@ function pairList(ids) {
     i < x.length - 1;
     i += 2
   ) {
-
     p.push([
       x[i],
       x[i + 1]
@@ -493,7 +377,6 @@ function pairList(ids) {
   }
 
   if (x.length % 2) {
-
     p.push([
       x[x.length - 1],
       x[0]
@@ -503,19 +386,11 @@ function pairList(ids) {
   return p;
 }
 
-
-/* =========================================================
-   ROUND 1～3
-========================================================= */
-
 function startMain() {
-
   S.score = {};
 
   S.candidates.forEach(id => {
-
     S.score[id] = 0;
-
   });
 
   S.round = 1;
@@ -525,9 +400,7 @@ function startMain() {
   show("main");
 }
 
-
 function prepareMain() {
-
   const sorted =
     [...S.candidates].sort(
       (a, b) =>
@@ -540,25 +413,18 @@ function prepareMain() {
       : pairList(sorted);
 
   S.pi = 0;
-
   S.first = null;
 
   renderMain();
 }
 
-
 function renderMain() {
-
   if (S.pi >= S.pairs.length) {
 
     if (S.round < 3) {
-
       S.round++;
-
       prepareMain();
-
     } else {
-
       show("mainDone");
     }
 
@@ -591,43 +457,28 @@ function renderMain() {
     });
 }
 
-
 function mainPick(id) {
-
   if (S.first === null) {
-
     S.first = id;
-
     renderMain();
-
     return;
   }
 
   if (id === S.first) {
-
     toast("請選擇其他候選人");
-
     return;
   }
 
   S.score[S.first] += 2;
-
   S.score[id] += 1;
 
   S.pi++;
-
   S.first = null;
 
   renderMain();
 }
 
-
-/* =========================================================
-   最後候選
-========================================================= */
-
 function startLast() {
-
   const sorted =
     [...S.candidates].sort(
       (a, b) =>
@@ -652,7 +503,6 @@ function startLast() {
     pairList(b);
 
   S.li = 0;
-
   S.first = null;
 
   renderLast();
@@ -660,13 +510,9 @@ function startLast() {
   show("last");
 }
 
-
 function renderLast() {
-
   if (S.li >= S.lastPairs.length) {
-
     finishLast();
-
     return;
   }
 
@@ -681,44 +527,32 @@ function renderLast() {
     .forEach(x => {
 
       x.onclick = () =>
-        lastPick(x.dataset.id);
+        lastPick(Number(x.dataset.id));
 
     });
 }
 
-
 function lastPick(id) {
-
-  id = String(id);
-
   if (S.first === null) {
-
     S.first = id;
-
     return;
   }
 
-  if (id === String(S.first)) {
-
+  if (id === S.first) {
     toast("請選擇其他候選人");
-
     return;
   }
 
   S.score[S.first] += 4;
-
   S.score[id] += 2;
 
   S.li++;
-
   S.first = null;
 
   renderLast();
 }
 
-
 function finishLast() {
-
   const sorted =
     [...S.candidates].sort(
       (a, b) =>
@@ -734,22 +568,14 @@ function finishLast() {
   show("finalists");
 }
 
-
-/* =========================================================
-   最終決選
-========================================================= */
-
 function startFinal() {
-
   S.ranking = [];
 
   S.finalRuns =
     S.finalists.map(id => [id]);
 
   S.finalNextRuns = [];
-
   S.finalRunIndex = 0;
-
   S.finalJob = null;
 
   show("final");
@@ -757,11 +583,8 @@ function startFinal() {
   nextFinal();
 }
 
-
 function beginNextFinalLevel() {
-
   if (S.finalRuns.length <= 1) {
-
     S.ranking =
       S.finalRuns[0].slice(0, 9);
 
@@ -769,25 +592,19 @@ function beginNextFinalLevel() {
   }
 
   S.finalNextRuns = [];
-
   S.finalRunIndex = 0;
-
   S.finalJob = null;
 
   nextFinal();
 }
 
-
 function nextFinal() {
-
   if (S.finalRuns.length <= 1) {
-
     S.ranking =
       S.finalRuns[0].slice(0, 9);
 
     return result();
   }
-
 
   if (
     S.finalRunIndex >=
@@ -799,7 +616,6 @@ function nextFinal() {
 
     return beginNextFinalLevel();
   }
-
 
   if (!S.finalJob) {
 
@@ -823,23 +639,16 @@ function nextFinal() {
     }
 
     S.finalJob = {
-
       left: [...left],
-
       right: [...right],
-
       i: 0,
-
       j: 0,
-
       out: []
     };
   }
 
-
   const j =
     S.finalJob;
-
 
   if (j.i >= j.left.length) {
 
@@ -850,12 +659,10 @@ function nextFinal() {
     S.finalNextRuns.push(j.out);
 
     S.finalRunIndex += 2;
-
     S.finalJob = null;
 
     return nextFinal();
   }
-
 
   if (j.j >= j.right.length) {
 
@@ -866,12 +673,10 @@ function nextFinal() {
     S.finalNextRuns.push(j.out);
 
     S.finalRunIndex += 2;
-
     S.finalJob = null;
 
     return nextFinal();
   }
-
 
   const a =
     j.left[j.i];
@@ -879,57 +684,45 @@ function nextFinal() {
   const b =
     j.right[j.j];
 
-
   $("#finalPair").innerHTML =
     duelCard(a) +
     duelCard(b);
 
-
   if ($("#finalPrompt")) {
-
     $("#finalPrompt").textContent =
       "你比較喜歡誰？";
   }
 
-
   if ($("#finalProgress")) {
-
     $("#finalProgress").textContent =
       `最終戰比較 · ${
         S.finalRunIndex / 2 + 1
       }`;
   }
 
-
   document
     .querySelectorAll("#finalPair .duelCard")
     .forEach(x => {
 
       x.onclick = () =>
-        finalPick(x.dataset.id);
+        finalPick(Number(x.dataset.id));
 
     });
 }
 
-
 function finalPick(id) {
-
   const j =
     S.finalJob;
 
   if (!j) return;
 
   const a =
-    String(j.left[j.i]);
+    j.left[j.i];
 
   const b =
-    String(j.right[j.j]);
+    j.right[j.j];
 
-  const picked =
-    String(id);
-
-
-  if (picked === a) {
+  if (id === a) {
 
     j.out.push(
       j.left[j.i]
@@ -937,7 +730,7 @@ function finalPick(id) {
 
     j.i++;
 
-  } else if (picked === b) {
+  } else if (id === b) {
 
     j.out.push(
       j.right[j.j]
@@ -953,13 +746,7 @@ function finalPick(id) {
   nextFinal();
 }
 
-
-/* =========================================================
-   排名
-========================================================= */
-
 function zhRank(i) {
-
   return [
     "第一名",
     "第二名",
@@ -974,49 +761,7 @@ function zhRank(i) {
     `第${i + 1}名`;
 }
 
-
-function resultCard(id, rank) {
-
-  const a =
-    get(id);
-
-  const badge =
-    rank === 0
-      ? "第一名"
-      : `第${rank + 1}名`;
-
-  return `
-    <div class="card resultCard ${
-      rank === 0
-        ? "firstPlace"
-        : ""
-    }">
-
-      ${photo(a)}
-
-      <div class="resultNameRow">
-
-        <span class="rankBadge">
-          ${badge}
-        </span>
-
-        <span class="resultName">
-          ${a.name}
-        </span>
-
-      </div>
-
-    </div>
-  `;
-}
-
-
-/* =========================================================
-   複製結果
-========================================================= */
-
 async function copyResult() {
-
   const text =
     "我的泰國女藝人 顏值理想型 TOP9\n" +
     S.ranking
@@ -1028,74 +773,53 @@ async function copyResult() {
       .join("\n");
 
   try {
-
     await navigator.clipboard.writeText(text);
-
     toast("已複製結果 ♡");
-
   } catch (e) {
-
     toast("無法複製");
   }
 }
-```
 
-**這份先不要再加任何東西。**
 
-另外，你現在的 CSS 如果已經是你之前給我的這一版，**先不要動 CSS**：
+/* =========================================================
+   PRE NEXT BUTTON
+   ========================================================= */
 
-```css
-.resultGrid .resultNameRow,
-.resultCard .resultNameRow {
-  position: relative !important;
-  display: block !important;
-  width: 100%;
-  min-width: 0;
-  margin: 0;
-  padding: 9px 5px 2px;
-  background: #fff;
-  color: #30242b;
-  text-align: center;
-  transform: none !important;
-}
+document.addEventListener("DOMContentLoaded", () => {
 
-.resultGrid .resultName,
-.resultCard .resultName {
-  position: static !important;
-  display: block;
-  width: 100%;
-  min-width: 0;
-  padding: 0 2px;
-  font-size: 13px !important;
-  font-weight: 800;
-  line-height: 1.4;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transform: none !important;
-}
+  const preNext =
+    $("#preNext");
 
-.resultGrid .rankBadge,
-.resultCard .rankBadge {
-  position: absolute !important;
-  left: 5px;
-  top: 9px;
-  display: inline-block;
-  margin: 0;
-  padding: 4px 6px;
-  background: #fff;
-  color: #30242b;
-  border-radius: 99px;
-  font-size: 9px;
-  font-weight: 800;
-  line-height: 1.2;
-  white-space: nowrap;
-  transform: none !important;
-}
+  if (preNext) {
 
-.resultGrid .card:first-child .rankBadge {
-  background: #d9aa32;
-  color: #fff;
-}
-```
+    preNext.onclick = () => {
+
+      if (picked.length === 0) {
+        toast("請至少選擇1人");
+        return;
+      }
+
+      S.pre.push(...picked);
+
+      gi++;
+
+      if (gi < groups.length) {
+
+        renderPre();
+
+      } else {
+
+        S.candidates =
+          [...new Set(S.pre)];
+
+        if ($("#preN")) {
+          $("#preN").textContent =
+            S.candidates.length;
+        }
+
+        show("preDone");
+      }
+    };
+  }
+
+});
