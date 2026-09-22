@@ -978,7 +978,7 @@ function result() {
         (id, i) => `
           <li>
             <span>
-              第${i + 1} 名
+              第 ${i + 1} 名
             </span>
 
             <span>
