@@ -986,7 +986,7 @@ function result() {
         (id, i) => `
           <li>
             <span>
-              ${i + 1} 位
+              第${i + 1} 名
             </span>
 
             <span>
