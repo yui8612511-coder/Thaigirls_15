@@ -760,7 +760,22 @@ function zhRank(i) {
   ][i] ||
     `第${i + 1}名`;
 }
+function result() {
+  const grid = document.querySelector(".resultGrid");
 
+  if (!grid) {
+    console.error("找不到 .resultGrid");
+    return;
+  }
+
+  grid.innerHTML =
+    S.ranking
+      .slice(0, 9)
+      .map((id, i) => resultCard(id, i))
+      .join("");
+
+  show("result");
+}
 async function copyResult() {
   const text =
     "我的泰國女藝人 顏值理想型 TOP9\n" +
