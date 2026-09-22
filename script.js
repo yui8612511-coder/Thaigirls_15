@@ -745,7 +745,33 @@ function finalPick(id) {
 
   nextFinal();
 }
+function resultCard(id, rank) {
+  const a = get(id);
 
+  return `
+    <div class="card resultCard">
+
+      <div class="photo resultPhoto">
+        <img
+          src="${a.image}"
+          alt="${a.name}"
+          onerror="this.style.display='none'"
+        >
+
+        <span class="rankBadge">
+          ${rank + 1}
+        </span>
+      </div>
+
+      <div class="resultNameRow">
+        <span class="resultName">
+          ${a.name}
+        </span>
+      </div>
+
+    </div>
+  `;
+}
 function zhRank(i) {
   return [
     "第一名",
