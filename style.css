@@ -403,36 +403,29 @@ h3 {
    圖片下方中央
 ========================= */
 
-.duelName,
-.duel button .duelName {
-  position: static !important;
-  display: block !important;
+.duel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
 
+.duel .photo {
   width: 100%;
-  margin: 0;
+  aspect-ratio: 1 / 1.15;
+}
 
-  padding: 9px 9px 2px;
-
-  background: #fff;
-  color: #30242b;
-
-  font-size: 13px !important;
-  font-weight: 800;
-  line-height: 1.4;
-
+.duel .name {
+  display: block;
+  width: 100%;
+  padding: 10px 8px;
   text-align: center;
-
+  font-size: 14px;
+  font-weight: 800;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  transform: none !important;
 }
-
-.duel button:hover {
-  transform: translateY(-2px);
-}
-
 
 /* =========================
    狀態
