@@ -658,3 +658,32 @@ h3 {
   }
 
 }
+/* =========================
+   二選一：圖片大、名字在下方
+========================= */
+
+.duel .nameRow {
+  display: block;
+  width: 100%;
+  padding: 0;
+}
+
+.duel .nameRow .badge {
+  display: none;
+}
+
+.duel .nameRow .name {
+  display: block;
+  width: 100%;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.duel button .photo {
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+}
