@@ -624,12 +624,12 @@ function renderLast() {
     p.map(id => duelCard(id)).join("");
 
   document
-    .querySelectorAll("#lastPair .duelCard")
-    .forEach(x => {
+  .querySelectorAll("#finalPair .duelCard")
+  .forEach(x => {
 
-      x.onclick = () =>
-        lastPick(Number(x.dataset.id));
-    });
+    x.onclick = () =>
+      finalPick(x.dataset.id);
+  });
 }
 
 
