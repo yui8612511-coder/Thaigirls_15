@@ -572,6 +572,7 @@ function mainPick(id) {
 }
 
 
+```js
 /* =========================================================
    最後候選
 ========================================================= */
@@ -624,16 +625,18 @@ function renderLast() {
     p.map(id => duelCard(id)).join("");
 
   document
-  .querySelectorAll("#finalPair .duelCard")
-  .forEach(x => {
+    .querySelectorAll("#lastPair .duelCard")
+    .forEach(x => {
 
-    x.onclick = () =>
-      finalPick(x.dataset.id);
-  });
+      x.onclick = () =>
+        lastPick(x.dataset.id);
+    });
 }
 
 
 function lastPick(id) {
+
+  id = String(id);
 
   if (S.first === null) {
 
@@ -642,7 +645,7 @@ function lastPick(id) {
     return;
   }
 
-  if (id === S.first) {
+  if (id === String(S.first)) {
     toast("請選擇其他候選人");
     return;
   }
@@ -676,7 +679,6 @@ function finishLast() {
 }
 
 
-```js
 /* =========================================================
    最終決選
 ========================================================= */
@@ -820,7 +822,7 @@ function nextFinal() {
     .forEach(x => {
 
       x.onclick = () =>
-        finalPick(Number(x.dataset.id));
+        finalPick(x.dataset.id);
     });
 }
 
@@ -831,17 +833,18 @@ function finalPick(id) {
 
   if (!j) return;
 
-  const a = j.left[j.i];
-  const b = j.right[j.j];
+  const a = String(j.left[j.i]);
+  const b = String(j.right[j.j]);
+  const picked = String(id);
 
-  if (id === a) {
+  if (picked === a) {
 
-    j.out.push(a);
+    j.out.push(j.left[j.i]);
     j.i++;
 
-  } else if (id === b) {
+  } else if (picked === b) {
 
-    j.out.push(b);
+    j.out.push(j.right[j.j]);
     j.j++;
 
   } else {
@@ -893,7 +896,7 @@ function resultCard(id, rank) {
     </div>
   `;
 }
-```
+
 
 /* =========================================================
    複製結果
@@ -916,6 +919,14 @@ async function copyResult() {
     await navigator.clipboard.writeText(text);
 
     toast("已複製結果 ♡");
+
+  } catch (e) {
+
+    toast("無法複製");
+  }
+}
+```
+
 
   } catch (e) {
 
