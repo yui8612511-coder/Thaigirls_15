@@ -872,17 +872,22 @@ function zhRank(i) {
 }
 
 
-function result() {
+function resultCard(id, rank) {
+  const a = get(id);
 
-  const ids =
-    S.ranking.slice(0, 9);
+  return `
+    <div class="card resultCard">
+      <div class="photo">
+        ${photo(a).match(/<img[^>]*>/)?.[0] || ""}
+        <span class="rankNumber">${rank + 1}</span>
+      </div>
 
-  $("#resultGrid").innerHTML =
-    ids
-      .map((id, i) =>
-        resultCard(id, i)
-      )
-      .join("");
+      <div class="resultNameRow">
+        <span class="resultName">${a.name}</span>
+      </div>
+    </div>
+  `;
+}
 
 
   $("#resultList").innerHTML =
