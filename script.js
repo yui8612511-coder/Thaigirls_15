@@ -887,26 +887,6 @@ function resultCard(id, rank) {
   `;
 }
 
-  $("#resultList").innerHTML =
-    ids
-      .map((id, i) => `
-        <li>
-          <span>
-            ${zhRank(i)}
-          </span>
-
-          <span>
-            ${get(id).name}
-          </span>
-        </li>
-      `)
-      .join("");
-
-
-  show("result");
-}
-
-
 /* =========================================================
    複製結果
 ========================================================= */
