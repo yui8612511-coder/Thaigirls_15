@@ -16,7 +16,12 @@
 .card.selected .check{
   background:#30242b;
   color:#fff;
-}.name{font-size:12px;font-weight:800;padding:9px 10px 1px}.group{font-size:9px;color:#9b8790;padding:1px 10px 10px}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,720px);padding:13px 24px;background:#fffefdf2;border-top:1px solid #eadde3;display:flex;justify-content:space-between;align-items:center;z-index:10;font-size:11px;color:#8e7b84}.meta{text-align:center;color:#a08690;font-size:10px}.duel{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:25px}.duel button .photo{aspect-ratio:1/1.2}.duel button:hover{transform:translateY(-2px)}.undo{display:block;margin:20px auto;background:none;border:0;color:#9b818c}.big{text-align:center;font-size:45px;margin:40px 0 20px}.status{text-align:center;background:#fff0f5;border:1px solid #efdce4;border-radius:99px;padding:9px;margin:20px 0;font-size:12px}.status b{font-size:18px;color:#b36f83}.resultHead{text-align:center}.resultGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.resultGrid .card{border:2px solid #e6dfe2;text-align:center}..badge{
+}.name{font-size:12px;font-weight:800;padding:9px 10px 1px}.group{font-size:9px;color:#9b8790;padding:1px 10px 10px}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,720px);padding:13px 24px;background:#fffefdf2;border-top:1px solid #eadde3;display:flex;justify-content:space-between;align-items:center;z-index:10;font-size:11px;color:#8e7b84}.meta{text-align:center;color:#a08690;font-size:10px}.duel{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:25px}.duel button .photo{aspect-ratio:1/1.2}.duel button:hover{transform:translateY(-2px)}.undo{display:block;margin:20px auto;background:none;border:0;color:#9b818c}.big{text-align:center;font-size:45px;margin:40px 0 20px}.status{text-align:center;background:#fff0f5;border:1px solid #efdce4;border-radius:99px;padding:9px;margin:20px 0;font-size:12px}.status b{font-size:18px;color:#b36f83}.resultHead{text-align:center}.resultGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.resultGrid .card{
+  border:2px solid #e6dfe2;
+  text-align:center;
+}
+
+.badge{
   display:block;
   position:static;
   width:max-content;
@@ -31,6 +36,7 @@
   background:#d9aa32;
   color:#fff;
 }
+
   width:fit-content;
   margin:6px auto 0;
   text-align:center;
