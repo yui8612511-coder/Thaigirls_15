@@ -221,24 +221,25 @@ function init(a) {
    圖片 + 名字在圖片下面
 ========================================================= */
 
-function card(id,cls="card"){
-  const a=get(id);
+function card(id,cls="card",badge=""){
+  let a=get(id);
 
-  if(cls==="duel"){
-    return `
-      <button class="duel" data-id="${id}">
-        ${init(a)}
-        <div class="name">${a.name}</div>
-      </button>
-    `;
-  }
-
-  return `
-    <button class="${cls}" data-id="${id}">
+  // 二選一：圖片 + 下方名字
+  if(cls === "duel"){
+    return `<button class="duel" data-id="${id}">
       ${init(a)}
       <div class="name">${a.name}</div>
-    </button>
-  `;
+    </button>`;
+  }
+
+  // TOP9：圖片 + 名次＋名字
+  return `<button class="${cls}" data-id="${id}">
+    ${init(a)}
+    <div class="nameRow">
+      ${badge ? `<span class="badge">${badge}</span>` : ""}
+      <div class="name">${a.name}</div>
+    </div>
+  </button>`;
 }
 
 /* =========================================================
