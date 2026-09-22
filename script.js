@@ -890,7 +890,6 @@ function result() {
       .map((id, i) => `
         <li>
           <span>
-            ${i === 0 ? "👑 " : ""}
             ${zhRank(i)}
           </span>
 
