@@ -676,6 +676,7 @@ function finishLast() {
 }
 
 
+```js
 /* =========================================================
    最終決選
 ========================================================= */
@@ -873,12 +874,18 @@ function zhRank(i) {
 
 
 function resultCard(id, rank) {
+
   const a = get(id);
-  const badge = rank === 0 ? "第一名" : `第${rank + 1}名`;
+
+  const badge =
+    rank === 0
+      ? "第一名"
+      : `第${rank + 1}名`;
 
   return `
-    <div class="card resultCard ${rank === 0 ? "firstPlace" : ""}">
+    <div class="card resultCard">
       ${photo(a)}
+
       <div class="resultNameRow">
         <span class="rankBadge">${badge}</span>
         <span class="resultName">${a.name}</span>
@@ -886,6 +893,7 @@ function resultCard(id, rank) {
     </div>
   `;
 }
+```
 
 /* =========================================================
    複製結果
