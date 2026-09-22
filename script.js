@@ -7,7 +7,14 @@ const $=s=>document.querySelector(s), screens=["home","preIntro","pre","preDone"
 function show(id){screens.forEach(x=>$("#"+x).classList.toggle("hidden",x!==id));scrollTo(0,0)}
 function toast(t){$("#toast").textContent=t;$("#toast").classList.add("show");setTimeout(()=>$("#toast").classList.remove("show"),1400)}
 function c(i){return["#a87388","#c18c8e","#817395","#c18d76","#8d7c93","#b17c87","#7c8196","#bd9480","#967080","#7c7188"][i%10]}
-function init(a,badge=""){return `<div class="photo" style="background:${c(a.id)}"><img src="${a.image}" onerror="this.style.display='none'">${badge?`<span class="badge">${badge}</span>`:""}</div>`}
+function init(a,badge=""){
+  return `<div>
+    <div class="photo" style="background:${c(a.id)}">
+      <img src="${a.image}" onerror="this.style.display='none'">
+    </div>
+    ${badge ? `<span class="badge">${badge}</span>` : ""}
+  </div>`;
+}
 function get(id){return A.find(a=>a.id===id)}
 function card(id,cls="card"){let a=get(id);return `<button class="${cls}" data-id="${id}">${init(a)}<div class="name">${a.name}</div></button>`}
 function resetAll(){S={pre:[],candidates:[],score:{},round:1,pairs:[],pi:0,first:null,finalists:[],lastPairs:[],li:0,ranking:[],pool:[]};show("home")}
