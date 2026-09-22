@@ -7,7 +7,14 @@ const $=s=>document.querySelector(s), screens=["home","preIntro","pre","preDone"
 function show(id){screens.forEach(x=>$("#"+x).classList.toggle("hidden",x!==id));scrollTo(0,0)}
 function toast(t){$("#toast").textContent=t;$("#toast").classList.add("show");setTimeout(()=>$("#toast").classList.remove("show"),1400)}
 function c(i){return["#a87388","#c18c8e","#817395","#c18d76","#8d7c93","#b17c87","#7c8196","#bd9480","#967080","#7c7188"][i%10]}
-function init(a,badge=""){return `<div class="photo" style="background:${c(a.id)}"><img src="${a.image}" onerror="this.style.display='none'">${badge?`<span class="badge">${badge}</span>`:""}</div>`}
+function init(a,badge=""){
+  return `<div>
+    <div class="photo" style="background:${c(a.id)}">
+      <img src="${a.image}" onerror="this.style.display='none'">
+    </div>
+    ${badge ? `<span class="badge">${badge}</span>` : ""}
+  </div>`;
+}
 function get(id){return A.find(a=>a.id===id)}
 function card(id,cls="card"){let a=get(id);return `<button class="${cls}" data-id="${id}">${init(a)}<div class="name">${a.name}</div></button>`}
 function resetAll(){S={pre:[],candidates:[],score:{},round:1,pairs:[],pi:0,first:null,finalists:[],lastPairs:[],li:0,ranking:[],pool:[]};show("home")}
@@ -27,13 +34,13 @@ function makeGroups(){
 }
 function startPre(){makeGroups();gi=0;S.pre=[];renderPre();show("pre")}
 function renderPre(){let g=groups[gi];$("#preTitle").textContent=`預選 ${gi+1} / ${groups.length}`;picked=[];$("#preGrid").innerHTML=g.map(a=>card(a.id)).join("");$("#preCount").textContent="目前選擇 0 / 3";
-document.querySelectorAll("#preGrid .card").forEach(x=>x.onclick=()=>{let id=+x.dataset.id;if(picked.includes(id)){picked=picked.filter(v=>v!==id);x.classList.remove("selected");x.querySelector(".check")?.remove()}else if(picked.length<3){picked.push(id);x.classList.add("selected");let z=document.createElement("span");z.className="check";z.textContent="✓";x.querySelector(".photo").append(z)}else toast("1画面につき3人まで");$("#preCount").textContent=`選択中 ${picked.length} / 3`})}
+document.querySelectorAll("#preGrid .card").forEach(x=>x.onclick=()=>{let id=+x.dataset.id;if(picked.includes(id)){picked=picked.filter(v=>v!==id);x.classList.remove("selected");x.querySelector(".check")?.remove()}else if(picked.length<3){picked.push(id);x.classList.add("selected");let z=document.createElement("span");z.className="check";z.textContent="✓";x.querySelector(".photo").append(z)}else toast("每次最多選擇3人");$("#preCount").textContent=`選擇中 ${picked.length} / 3`})}
 $("#preNext").onclick=()=>{S.pre.push(...picked);gi++;if(gi<groups.length)renderPre();else{S.candidates=[...new Set(S.pre)];$("#preN").textContent=S.candidates.length;show("preDone")}}
 
 function pairList(ids){let x=[...ids].sort(()=>Math.random()-.5),p=[];for(let i=0;i<x.length-1;i+=2)p.push([x[i],x[i+1]]);if(x.length%2)p.push([x[x.length-1],x[0]]);return p}
 function startMain(){S.score={};S.candidates.forEach(id=>S.score[id]=0);S.round=1;prepareMain();show("main")}
 function prepareMain(){let sorted=[...S.candidates].sort((a,b)=>S.score[b]-S.score[a]||a-b);S.pairs=S.round===1?pairList(S.candidates):pairList(sorted);S.pi=0;S.first=null;renderMain()}
-function renderMain(){if(S.pi>=S.pairs.length){if(S.round<3){S.round++;prepareMain()}else show("mainDone");return}let p=S.pairs[S.pi];$("#mainTitle").textContent=`ROUND ${S.round} / 3`,$("#mainProgress").textContent=`${S.pi+1} / ${S.pairs.length}`,$("#mainPrompt").textContent=S.first===null?"① 一番好きな顔は？":"② 次に好きな顔は？";$("#mainPair").innerHTML=p.map(id=>card(id,"duel")).join("");document.querySelectorAll("#mainPair .duel").forEach(x=>x.onclick=()=>mainPick(+x.dataset.id))}
+function renderMain(){if(S.pi>=S.pairs.length){if(S.round<3){S.round++;prepareMain()}else show("mainDone");return}let p=S.pairs[S.pi];$("#mainTitle").textContent=`ROUND ${S.round} / 3`,$("#mainProgress").textContent=`${S.pi+1} / ${S.pairs.length}`,$("#mainPrompt").textContent=S.first===null?"① 你比較喜歡哪一位的臉？":"② 接下來你比較喜歡哪一位？";$("#mainPair").innerHTML=p.map(id=>card(id,"duel")).join("");document.querySelectorAll("#mainPair .duel").forEach(x=>x.onclick=()=>mainPick(+x.dataset.id))}
 function mainPick(id){let p=S.pairs[S.pi];if(S.first===null){S.first=id;renderMain();return}if(id===S.first)return toast("請選擇其他候選人");S.score[S.first]+=2;S.score[id]++;S.pi++;S.first=null;renderMain()}
 
 function startLast(){let sorted=[...S.candidates].sort((a,b)=>S.score[b]-S.score[a]||a-b);S.finalists=sorted.slice(0,Math.min(18,sorted.length));let b=S.finalists.slice(Math.max(0,S.finalists.length-6));S.lastPairs=pairList(b);S.li=0;S.first=null;renderLast();show("last")}
@@ -100,7 +107,7 @@ function nextFinal(){
   }
   const a=j.left[j.i], b=j.right[j.j];
   $("#finalPair").innerHTML=[card(a,"duel"),card(b,"duel")].join("");
-  if($("#finalPrompt")) $("#finalPrompt").textContent="你比較喜歡哪張臉？";
+  if($("#finalPrompt")) $("#finalPrompt").textContent="你比較喜歡誰？";
   if($("#finalProgress")) $("#finalProgress").textContent=`最終戰比較 · ${S.finalRunIndex/2+1}`;
   document.querySelectorAll("#finalPair .duel").forEach(x=>x.onclick=()=>finalPick(+x.dataset.id));
 }
