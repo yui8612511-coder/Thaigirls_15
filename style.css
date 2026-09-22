@@ -510,7 +510,7 @@ h3 {
 
 .resultGrid .resultNameRow,
 .resultCard .resultNameRow {
-  position: relative !important;
+  position: static !important;
 
   display: block !important;
 
