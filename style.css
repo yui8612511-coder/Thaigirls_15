@@ -382,19 +382,29 @@ h3 {
    PK
 ========================= */
 
-.duel {
+#mainPair,
+#lastPair,
+#finalPair {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 18px;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.duel button {
-  position: relative;
+#mainPair .duel .photo,
+#lastPair .duel .photo,
+#finalPair .duel .photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
 }
 
-.duel button .photo {
-  aspect-ratio: 1 / 1.08;
+#mainPair .duel .photo img,
+#lastPair .duel .photo img,
+#finalPair .duel .photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 
@@ -403,28 +413,29 @@ h3 {
    圖片下方中央
 ========================= */
 
-.duel {
+#mainPair,
+#lastPair,
+#finalPair {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 18px;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.duel .photo {
+#mainPair .duel .photo,
+#lastPair .duel .photo,
+#finalPair .duel .photo {
   width: 100%;
-  aspect-ratio: 1 / 1.15;
+  aspect-ratio: 3 / 4;
 }
 
-.duel .name {
-  display: block;
+#mainPair .duel .photo img,
+#lastPair .duel .photo img,
+#finalPair .duel .photo img {
   width: 100%;
-  padding: 10px 8px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 800;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* =========================
