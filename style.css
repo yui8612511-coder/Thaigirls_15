@@ -687,3 +687,171 @@ h3 {
   width: 100%;
   aspect-ratio: 1 / 1.15;
 }
+/* =========================================================
+   最終版：二選一
+========================================================= */
+
+#mainPair,
+#lastPair,
+#finalPair {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+}
+
+#mainPair .duelCard,
+#lastPair .duelCard,
+#finalPair .duelCard {
+  display: block !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border: 2px solid transparent !important;
+  border-radius: 15px !important;
+  background: #fff !important;
+  text-align: center !important;
+}
+
+#mainPair .duelCard .photo,
+#lastPair .duelCard .photo,
+#finalPair .duelCard .photo {
+  width: 100% !important;
+  aspect-ratio: 1 / 1.12 !important;
+}
+
+#mainPair .duelName,
+#lastPair .duelName,
+#finalPair .duelName {
+  display: block !important;
+  width: 100% !important;
+  padding: 9px 6px !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+
+/* =========================================================
+   TOP9：圖片縮小
+========================================================= */
+
+.resultGrid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+  margin-top: 18px !important;
+}
+
+.resultGrid .resultCard {
+  display: block !important;
+  width: 100% !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 2px solid #eadde3 !important;
+  border-radius: 14px !important;
+  background: #fff !important;
+  text-align: center !important;
+}
+
+.resultGrid .resultCard .photo {
+  width: 100% !important;
+
+  /* ★ TOP9 圖片比二選一小 */
+  aspect-ratio: 1 / 1.02 !important;
+}
+
+
+/* 第一名 */
+.resultGrid .resultCard.firstPlace {
+  border: 3px solid #d9aa32 !important;
+}
+
+
+/* TOP9 名字＋名次 */
+.resultNameRow {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+
+  width: 100% !important;
+  min-height: 32px !important;
+
+  padding: 5px 4px !important;
+}
+
+.rankBadge {
+  flex-shrink: 0 !important;
+
+  padding: 3px 5px !important;
+  border-radius: 99px !important;
+
+  background: #f0e8eb !important;
+  color: #6e5961 !important;
+
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+}
+
+.firstPlace .rankBadge {
+  background: #d9aa32 !important;
+  color: #fff !important;
+}
+
+.resultName {
+  min-width: 0 !important;
+
+  overflow: hidden !important;
+
+  font-size: 11px !important;
+  font-weight: 800 !important;
+
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+}
+
+
+/* 手機 */
+@media (max-width: 599px) {
+
+  .resultGrid {
+    gap: 7px !important;
+  }
+
+  .resultGrid .resultCard .photo {
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  .resultNameRow {
+    min-height: 31px !important;
+    padding: 5px 3px !important;
+  }
+
+  .rankBadge {
+    font-size: 8px !important;
+    padding: 3px 4px !important;
+  }
+
+  .resultName {
+    font-size: 10px !important;
+  }
+}
+
+
+/* 電腦 */
+@media (min-width: 600px) {
+
+  .resultGrid .resultCard .photo {
+    aspect-ratio: 1 / 1.05 !important;
+  }
+
+  .resultName {
+    font-size: 11px !important;
+  }
+}
