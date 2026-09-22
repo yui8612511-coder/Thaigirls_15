@@ -1,82 +1,660 @@
-*{box-sizing:border-box}body{margin:0;background:#eee;font-family:"Noto Sans JP",sans-serif;color:#30242b}.app{max-width:720px;min-height:100vh;margin:auto;background:#fff9fb}.screen{min-height:100vh;padding:32px 24px 105px}.hidden{display:none!important}.center{text-align:center}.brand{font-weight:800;letter-spacing:.2em;text-align:center;color:#aa8290}.flag{text-align:center;font-size:30px;margin:28px}.eyebrow{font-size:10px;letter-spacing:.18em;font-weight:800;color:#a27e8d}.lead{color:#806e76;line-height:1.9;text-align:center}h1{font-size:34px;line-height:1.2;text-align:center}h2{font-size:28px;line-height:1.25}h3{margin-top:24px}.steps{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:25px 0}.steps span,.rules{background:#fff;border:1px solid #eadde3;border-radius:15px;padding:9px 12px;font-size:11px}.rules{line-height:2;margin:25px 0}.primary,.secondary{width:100%;padding:15px;border-radius:15px;font-weight:800;margin-top:10px;border:0}.primary{background:#30242b;color:#fff}.secondary{background:#fff;border:1px solid #eadde3}.small{width:auto;margin:0;padding:11px 18px}.note,.sub{font-size:10px;color:#a08e95;line-height:1.8}.head{display:flex;justify-content:space-between;align-items:start}.link{border:0;background:none;color:#9a818c}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:25px}.card,.duel button{background:#fff;border:2px solid transparent;border-radius:17px;overflow:hidden;padding:0;text-align:left;box-shadow:0 3px 12px #0001}.card.selected{border-color:#d9a3b4}.photo{aspect-ratio:1/1.08;position:relative;display:grid;place-items:center;background:#a87388;color:#fff;font-size:28px;font-weight:800;overflow:hidden}.photo img{position:absolute;width:100%;height:100%;object-fit:cover}.photo b{position:relative;z-index:1;text-shadow:0 2px 8px #0006}.check,.check,.badge{
-  z-index:2;
-  background:#fff;
-  color:#30242b;
-  border-radius:99px;
-  padding:4px 8px;
-  font-size:10px;
+/* =========================
+   基本設定
+========================= */
+
+* {
+  box-sizing: border-box;
 }
 
-.check{
-  position:absolute;
-  right:7px;
-  top:7px;
+html {
+  background: #fff9fb;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
-.card.selected .check{
-  background:#30242b;
-  color:#fff;
-}.name{font-size:12px;font-weight:800;padding:9px 10px 1px}.group{font-size:9px;color:#9b8790;padding:1px 10px 10px}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,720px);padding:13px 24px;background:#fffefdf2;border-top:1px solid #eadde3;display:flex;justify-content:space-between;align-items:center;z-index:10;font-size:11px;color:#8e7b84}.meta{text-align:center;color:#a08690;font-size:10px}.duel{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:25px}.duel button .photo{aspect-ratio:1/1.2}.duel button:hover{transform:translateY(-2px)}.undo{display:block;margin:20px auto;background:none;border:0;color:#9b818c}.big{text-align:center;font-size:45px;margin:40px 0 20px}.status{text-align:center;background:#fff0f5;border:1px solid #efdce4;border-radius:99px;padding:9px;margin:20px 0;font-size:12px}.status b{font-size:18px;color:#b36f83}.resultHead{text-align:center}.resultGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.resultGrid .card{
-  border:2px solid #e6dfe2;
-  text-align:center;
+body {
+  margin: 0;
+  background: #eee;
+  color: #30242b;
+  font-family: "Noto Sans JP", sans-serif;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.badge{
-  display:block;
-  position:static;
-  width:max-content;
-  max-width:none;
-  white-space:nowrap;
-  margin:6px auto 0;
-  text-align:center;
-  font-weight:800;
+button {
+  font: inherit;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
 }
 
-.resultGrid .card:first-child .badge{
-  background:#d9aa32;
-  color:#fff;
+.app {
+  width: 100%;
+  max-width: 720px;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: auto;
+  background: #fff9fb;
 }
 
-  width:fit-content;
-  margin:6px auto 0;
-  text-align:center;
-  font-weight:800;
+
+/* =========================
+   頁面
+========================= */
+
+.screen {
+  min-height: 100vh;
+  padding: 22px 16px calc(96px + env(safe-area-inset-bottom));
 }
 
-.resultGrid .card:first-child .badge{
-  background:#d9aa32;
-  color:#fff;
-}.table{margin-top:18px;background:#fff;border:1px solid #eadde3;border-radius:17px;overflow:hidden}.table h3{background:#fff0f5;margin:0;padding:13px}.table ol{list-style:none;padding:0;margin:0}.table li{display:grid;grid-template-columns:50px 1fr;padding:11px 16px;border-top:1px solid #f0e6ea;font-size:12px}.toast{position:fixed;bottom:85px;left:50%;transform:translate(-50%,20px);background:#30242b;color:#fff;padding:10px 15px;border-radius:99px;opacity:0;transition:.2s;z-index:99}.toast.show{opacity:1;transform:translate(-50%,0)}@media(min-width:600px){.grid{grid-template-columns:repeat(4,1fr)}h1{font-size:43px}}/* v9 mobile-first enhancements */
-html{background:#fff9fb;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
-body{background:#eee;overflow-x:hidden;-webkit-tap-highlight-color:transparent;}
-button{font:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
-.app{width:100%;max-width:720px;min-height:100svh;min-height:100vh;}
-.screen{padding:22px 16px calc(96px + env(safe-area-inset-bottom))}
-h1{font-size:30px;margin:18px 0;word-break:keep-all}h2{font-size:25px;margin:14px 0}h3{font-size:17px;line-height:1.45}
-.brand{font-size:13px}.flag{font-size:28px;margin:20px}.lead{font-size:14px;line-height:1.8}
-.steps{gap:6px;margin:20px 0}.steps span,.rules{font-size:12px;padding:9px 10px}.rules{line-height:1.9}
-.primary,.secondary{min-height:50px;padding:13px 15px;font-size:15px;cursor:pointer}.small{min-height:44px;padding:9px 14px}
-.link,.undo{min-height:44px;padding:8px 10px;cursor:pointer}.head{gap:8px}.head>div{min-width:0}.head h2{font-size:23px}
-.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}.card,.duel button{min-width:0;border-radius:15px;box-shadow:0 2px 9px #0001;cursor:pointer}
-.card:active,.duel button:active{transform:scale(.985)}
-.photo{aspect-ratio:1/1.12;font-size:24px}.duel{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}.duel button .photo{aspect-ratio:1/1.18}
-.name{font-size:13px;padding:9px 9px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.group{font-size:9px;padding:1px 9px 9px}
-.check,.badge{font-size:10px;padding:5px 8px}.check{right:6px;top:6px}
-.bottom{width:100%;padding:10px 16px calc(10px + env(safe-area-inset-bottom));font-size:12px}.bottom .primary{width:auto;margin:0}
-.meta,.sub,.note{font-size:11px}.big{font-size:42px;margin:30px 0 15px}.status{font-size:13px;padding:9px;margin:16px 0}.status b{font-size:19px}
-.resultGrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.resultGrid .name{font-size:11px}.table li{grid-template-columns:48px 1fr;padding:11px 13px;font-size:13px}
-.toast{bottom:calc(76px + env(safe-area-inset-bottom));max-width:calc(100% - 32px);white-space:nowrap}
-@media (min-width:600px){
-  .screen{padding:32px 24px 105px}h1{font-size:43px}.grid{grid-template-columns:repeat(4,1fr);gap:12px;margin-top:25px}.duel{gap:12px;margin-top:25px}.primary,.secondary{min-height:0}.photo{font-size:28px}.name{font-size:12px}
-}
-@media (max-width:360px){
-  .screen{padding-left:12px;padding-right:12px}.grid,.duel{gap:8px}.name{font-size:12px}.steps span{font-size:11px;padding:8px}.head h2{font-size:21px}
-}
-@media (orientation:landscape) and (max-height:520px){
-  .screen{padding-top:14px}.flag{margin:10px}.big{margin:15px 0}.photo{aspect-ratio:1/1}.duel button .photo{aspect-ratio:1/1}
+.hidden {
+  display: none !important;
 }
 
-/* v10: no initials/name overlay on photos; names stay below images */
-.photo b{display:none!important}
-.photo img{z-index:0;display:block}
-@media(max-width:599px){.photo{aspect-ratio:1/1.05}.duel button .photo{aspect-ratio:1/1.08}.card .name,.duel .name{background:#fff;position:relative;z-index:3}.card,.duel button{-webkit-user-select:none;user-select:none}}
+.center {
+  text-align: center;
+}
+
+
+/* =========================
+   首頁
+========================= */
+
+.brand {
+  margin-top: 8px;
+  text-align: center;
+  color: #aa8290;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .2em;
+}
+
+.flag {
+  margin: 20px 0;
+  text-align: center;
+  font-size: 28px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #a27e8d;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .18em;
+}
+
+.lead {
+  color: #806e76;
+  font-size: 14px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+h1 {
+  margin: 18px 0;
+  font-size: 30px;
+  line-height: 1.25;
+  text-align: center;
+  word-break: keep-all;
+}
+
+h2 {
+  margin: 14px 0;
+  font-size: 25px;
+  line-height: 1.25;
+}
+
+h3 {
+  margin-top: 24px;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+
+/* =========================
+   首頁四階段
+========================= */
+
+.steps {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 20px 0;
+}
+
+.steps span,
+.rules {
+  padding: 9px 10px;
+  border: 1px solid #eadde3;
+  border-radius: 15px;
+  background: #fff;
+  font-size: 12px;
+}
+
+.rules {
+  margin: 20px 0;
+  line-height: 1.9;
+}
+
+
+/* =========================
+   按鈕
+========================= */
+
+.primary,
+.secondary {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 10px;
+  padding: 13px 15px;
+  border-radius: 15px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.primary {
+  border: 0;
+  background: #30242b;
+  color: #fff;
+}
+
+.secondary {
+  border: 1px solid #eadde3;
+  background: #fff;
+  color: #30242b;
+}
+
+.small {
+  width: auto;
+  min-height: 44px;
+  margin: 0;
+  padding: 9px 14px;
+}
+
+.link,
+.undo {
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 0;
+  background: none;
+  color: #9a818c;
+}
+
+.undo {
+  display: block;
+  margin: 20px auto;
+}
+
+.note,
+.sub {
+  color: #a08e95;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+
+/* =========================
+   標題區
+========================= */
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.head > div {
+  min-width: 0;
+}
+
+.head h2 {
+  font-size: 23px;
+}
+
+
+/* =========================
+   人物卡片
+========================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.card,
+.duel button {
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 2px 9px #0001;
+  text-align: left;
+}
+
+.card.selected {
+  border-color: #d9a3b4;
+}
+
+.card:active,
+.duel button:active {
+  transform: scale(.985);
+}
+
+
+/* =========================
+   照片
+========================= */
+
+.photo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1.05;
+  overflow: hidden;
+  background: #a87388;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.photo img {
+  position: absolute;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo b {
+  display: none !important;
+}
+
+
+/* =========================
+   名字
+========================= */
+
+.name {
+  padding: 9px 9px 2px;
+  overflow: hidden;
+  color: #30242b;
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.group {
+  padding: 1px 9px 9px;
+  color: #9b8790;
+  font-size: 9px;
+}
+
+
+/* =========================
+   選擇 ✓
+========================= */
+
+.check {
+  position: absolute;
+  z-index: 5;
+  top: 6px;
+  right: 6px;
+  padding: 5px 8px;
+  border-radius: 99px;
+  background: #fff;
+  color: #30242b;
+  font-size: 10px;
+}
+
+.card.selected .check {
+  background: #30242b;
+  color: #fff;
+}
+
+
+/* =========================
+   第一名 / 名次 Badge
+========================= */
+
+.badge {
+  display: inline-block;
+  position: static;
+  z-index: 5;
+  width: max-content;
+  max-width: none;
+  margin: 0;
+  padding: 4px 8px;
+  border-radius: 99px;
+  background: #fff;
+  color: #30242b;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+
+/* =========================
+   TOP9 結果卡片
+========================= */
+
+.resultHead {
+  text-align: center;
+}
+
+.resultGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+
+/*
+  結果卡片改成可以讓
+  「👑 第一名」＋「名字」
+  排在同一排
+*/
+.resultGrid .card {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  border: 2px solid #e6dfe2;
+  text-align: center;
+}
+
+
+/* init() 裡的外層 div */
+.resultGrid .card > div:first-child {
+  display: contents;
+}
+
+
+/* 照片佔滿整排 */
+.resultGrid .card .photo {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+
+/* 第一名金色 */
+.resultGrid .card:first-child {
+  border: 4px solid #d9aa32;
+}
+
+.resultGrid .card:first-child .badge {
+  margin: 8px 0 8px 8px;
+  background: #d9aa32;
+  color: #fff;
+}
+
+
+/*
+  名字與 badge 同一排
+*/
+.resultGrid .card .badge + .name {
+  flex: 1;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+  padding: 8px 8px;
+  text-align: left;
+}
+
+
+/* 如果 badge 前面沒有 name，也保持正常 */
+.resultGrid .card .name {
+  margin: 0;
+  padding: 8px;
+  font-size: 11px;
+  text-align: center;
+}
+
+
+/* =========================
+   二選一
+========================= */
+
+.duel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.duel button .photo {
+  aspect-ratio: 1 / 1.08;
+}
+
+.duel button:hover {
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   底部固定操作列
+========================= */
+
+.bottom {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 720px;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  border-top: 1px solid #eadde3;
+  background: #fffefdf2;
+  color: #8e7b84;
+  font-size: 12px;
+  transform: translateX(-50%);
+}
+
+.bottom .primary {
+  width: auto;
+  margin: 0;
+}
+
+
+/* =========================
+   進度 / 狀態
+========================= */
+
+.meta {
+  color: #a08690;
+  font-size: 11px;
+  text-align: center;
+}
+
+.status {
+  margin: 16px 0;
+  padding: 9px;
+  border: 1px solid #efdce4;
+  border-radius: 99px;
+  background: #fff0f5;
+  font-size: 13px;
+  text-align: center;
+}
+
+.status b {
+  color: #b36f83;
+  font-size: 19px;
+}
+
+.big {
+  margin: 30px 0 15px;
+  font-size: 42px;
+  text-align: center;
+}
+
+
+/* =========================
+   TOP9 排名表
+========================= */
+
+.table {
+  margin-top: 18px;
+  overflow: hidden;
+  border: 1px solid #eadde3;
+  border-radius: 17px;
+  background: #fff;
+}
+
+.table h3 {
+  margin: 0;
+  padding: 13px;
+  background: #fff0f5;
+}
+
+.table ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.table li {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  padding: 11px 13px;
+  border-top: 1px solid #f0e6ea;
+  font-size: 13px;
+}
+
+
+/* =========================
+   Toast
+========================= */
+
+.toast {
+  position: fixed;
+  z-index: 99;
+  bottom: calc(76px + env(safe-area-inset-bottom));
+  left: 50%;
+  max-width: calc(100% - 32px);
+  padding: 10px 15px;
+  border-radius: 99px;
+  background: #30242b;
+  color: #fff;
+  opacity: 0;
+  transform: translate(-50%, 20px);
+  transition: .2s;
+  white-space: nowrap;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+
+/* =========================
+   電腦版
+========================= */
+
+@media (min-width: 600px) {
+
+  .screen {
+    padding: 32px 24px 105px;
+  }
+
+  h1 {
+    font-size: 43px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 25px;
+  }
+
+  .duel {
+    gap: 12px;
+    margin-top: 25px;
+  }
+
+  .primary,
+  .secondary {
+    min-height: 0;
+  }
+
+  .photo {
+    aspect-ratio: 1 / 1.08;
+    font-size: 28px;
+  }
+
+  .name {
+    font-size: 12px;
+  }
+
+}
+
+
+/* =========================
+   超小手機
+========================= */
+
+@media (max-width: 360px) {
+
+  .screen {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .grid,
+  .duel {
+    gap: 8px;
+  }
+
+  .name {
+    font-size: 12px;
+  }
+
+  .steps span {
+    padding: 8px;
+    font-size: 11px;
+  }
+
+  .head h2 {
+    font-size: 21px;
+  }
+
+}
+
+
+/* =========================
+   手機橫向
+========================= */
+
+@media (orientation: landscape) and (max-height: 520px) {
+
+  .screen {
+    padding-top: 14px;
+  }
+
+  .flag {
+    margin: 10px;
+  }
+
+  .big {
+    margin: 15px 0;
+  }
+
+  .photo {
+    aspect-ratio: 1 / 1;
+  }
+
+  .duel button .photo {
+    aspect-ratio: 1 / 1;
+  }
+
+}
