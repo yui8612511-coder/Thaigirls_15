@@ -565,8 +565,8 @@ function renderMain() {
   if (prompt) {
     prompt.textContent =
       S.first === null
-        ? "① 一番好きな顔は？"
-        : "② 次に好きな顔は？";
+        ? "① 最喜歡哪一張臉？"
+        : "② 接下來喜歡哪一位？";
   }
 
   if (pair) {
