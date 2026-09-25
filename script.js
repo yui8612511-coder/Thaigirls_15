@@ -433,6 +433,7 @@ let S = {
 const $ = s => document.querySelector(s);
 
 const screens = [
+  "language",
   "home",
   "preIntro",
   "pre",
