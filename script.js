@@ -7,10 +7,10 @@ let LANG = "zh";
 const TEXT = {
 
   zh: {
-    languageTitle: "泰國女藝人<br>喜歡的臉 TOP9",
+    languageTitle: "你的泰國女藝人<br>顏值理想型 TOP9",
     chooseLanguage: "請選擇語言",
 
-    homeTitle: "泰國女藝人<br><strong>顏值理想型 TOP9 👑</strong>",
+    homeTitle: "你的泰國女藝人<br><strong>顏值理想型 TOP9 👑</strong>",
     homeLead: "從92位候選人中憑直覺選擇，<br>決定你自己「喜歡的臉」TOP9。",
     stepPre: "🌱 預選",
     stepMain: "🔥 本選",
@@ -80,10 +80,10 @@ const TEXT = {
 
 
   en: {
-    languageTitle: "Thai Actresses<br>Favorite Face TOP9",
+    languageTitle: "Your Thai Actresses<br>Favorite Face TOP9",
     chooseLanguage: "Choose your language",
 
-    homeTitle: "Thai Actresses<br><strong>Favorite Face TOP9 👑</strong>",
+    homeTitle: "Your Thai Actresses<br><strong>Favorite Face TOP9 👑</strong>",
     homeLead: "Choose intuitively from 92 actresses,<br>and discover your own Favorite Face TOP9.",
     stepPre: "🌱 Preliminary",
     stepMain: "🔥 Main Round",
@@ -153,10 +153,10 @@ const TEXT = {
 
 
   ja: {
-    languageTitle: "タイ女性芸能人<br>好き顔 TOP9",
+    languageTitle: "あなたのタイ女性芸能人<br>好き顔 TOP9",
     chooseLanguage: "言語を選択してください",
 
-    homeTitle: "タイ女性芸能人<br><strong>好き顔 TOP9 👑</strong>",
+    homeTitle: "あなたのタイ女性芸能人<br><strong>好き顔 TOP9 👑</strong>",
     homeLead: "92人の候補者から直感で選んで、<br>あなたの「好き顔」TOP9を決めよう。",
     stepPre: "🌱 予選",
     stepMain: "🔥 本選",
@@ -697,7 +697,7 @@ function renderPre() {
 
           if (count) {
             count.textContent =
-              `選擇中 ${picked.length} / 3`;
+              `Selected! ${picked.length} / 3`;
           }
         };
       });
