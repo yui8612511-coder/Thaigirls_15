@@ -1,69 +1,543 @@
-<!doctype html><html lang="zh-Hant"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>泰國女藝人 誰是你的顏值理想型？TOP9大決選</title>
-<link rel="stylesheet" href="style.css"></head><body><div class="app">
+<!doctype html>
+<html lang="zh-Hant">
 
-<section id="home" class="screen">
-<div class="brand">SUKIGAO 9</div><div class="flag">🇹🇭 ♡ 👑</div>
-<p class="eyebrow">THAI GIRLS · FACE ONLY</p>
-<h1>泰國女藝人<br><strong>喜歡的臉 TOP9 👑</strong></h1>
-<p class="lead">從92位候選人中憑直覺選擇，<br>決定你自己「喜歡的臉」TOP9。</p>
-<div class="steps"><span>🌱 預選</span><span>🔥 本選</span><span>⚔️ 最終戰</span><span>👑 決賽</span></div>
-<button class="primary" onclick="show('preIntro')" >開始預選</button>
-<p class="note">不需要登入。進度會保存在這台裝置的瀏覽器中。</p>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<title>SUKIGAO 9</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+
+<!-- =========================
+     語言選擇
+========================= -->
+
+<section id="language" class="screen center">
+
+  <div class="brand">SUKIGAO 9</div>
+
+  <div class="flag">🇹🇭 ♡ 👑</div>
+
+  <p class="eyebrow">THAI GIRLS · FACE ONLY</p>
+
+  <h1>
+    <span data-i18n="languageTitle">
+      泰國女藝人<br>喜歡的臉 TOP9
+    </span>
+  </h1>
+
+  <p class="lead" data-i18n="chooseLanguage">
+    請選擇語言
+  </p>
+
+  <button class="primary" onclick="setLanguage('zh')">
+    🇹🇼 中文
+  </button>
+
+  <button class="secondary" onclick="setLanguage('en')">
+    🇬🇧 English
+  </button>
+
+  <button class="secondary" onclick="setLanguage('ja')">
+    🇯🇵 日本語
+  </button>
+
 </section>
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section id="home" class="screen hidden">
+
+  <div class="brand">SUKIGAO 9</div>
+
+  <div class="flag">🇹🇭 ♡ 👑</div>
+
+  <p class="eyebrow">THAI GIRLS · FACE ONLY</p>
+
+  <h1 data-i18n-html="homeTitle">
+    泰國女藝人<br>
+    <strong>喜歡的臉 TOP9 👑</strong>
+  </h1>
+
+  <p class="lead" data-i18n-html="homeLead">
+    從92位候選人中憑直覺選擇，<br>
+    決定你自己「喜歡的臉」TOP9。
+  </p>
+
+  <div class="steps">
+    <span data-i18n="stepPre">🌱 預選</span>
+    <span data-i18n="stepMain">🔥 本選</span>
+    <span data-i18n="stepFinal">⚔️ 最終戰</span>
+    <span data-i18n="stepResult">👑 決賽</span>
+  </div>
+
+  <button
+    class="primary"
+    onclick="show('preIntro')"
+    data-i18n="startPre">
+    開始預選
+  </button>
+
+  <p class="note" data-i18n="saveNote">
+    不需要登入。進度會保存在這台裝置的瀏覽器中。
+  </p>
+
+</section>
+
+
+<!-- =========================
+     PRE INTRO
+========================= -->
 
 <section id="preIntro" class="screen hidden">
-<p class="eyebrow">🌱 PRELIMINARY</p><h2>預選</h2>
-<p>請從顯示的成員中，<br>選出你覺得「喜歡這張臉」的人。</p>
-<div class="rules">可以複選！<br><b>4人畫面、3人畫面都可以選 0～3 人</b>。</div>
-<button class="primary" onclick="startPre()">開始預選 →</button>
+
+  <p class="eyebrow">🌱 PRELIMINARY</p>
+
+  <h2 data-i18n="preTitle">預選</h2>
+
+  <p data-i18n-html="preDescription">
+    請從顯示的成員中，<br>
+    選出你覺得「喜歡這張臉」的人。
+  </p>
+
+  <div class="rules" data-i18n-html="preRules">
+    可以複選！<br>
+    <b>4人畫面、3人畫面都可以選 0～3 人</b>。
+  </div>
+
+  <button
+    class="primary"
+    onclick="startPre()"
+    data-i18n="startPreArrow">
+    開始預選 →
+  </button>
+
 </section>
+
+
+<!-- =========================
+     PRE
+========================= -->
 
 <section id="pre" class="screen hidden">
-<div class="head"><div><p class="eyebrow">🌱 預選</p><h2 id="preTitle"></h2></div><button class="link" onclick="show('home')">回首頁</button></div>
-<h3>請選出你喜歡的臉</h3><p class="sub">可以複選。不用想太多，憑直覺就好 ♡</p>
-<div id="preGrid" class="grid"></div>
-<div class="bottom"><span id="preCount">目前選擇 0 / 3</span><button id="preNext" class="primary small">下一步 →</button></div>
+
+  <div class="head">
+
+    <div>
+      <p class="eyebrow">🌱 <span data-i18n="pre">預選</span></p>
+      <h2 id="preTitle"></h2>
+    </div>
+
+    <button
+      class="link"
+      onclick="show('home')"
+      data-i18n="home">
+      回首頁
+    </button>
+
+  </div>
+
+  <h3 data-i18n="chooseFace">請選出你喜歡的臉</h3>
+
+  <p class="sub" data-i18n="intuition">
+    可以複選。不用想太多，憑直覺就好 ♡
+  </p>
+
+  <div id="preGrid" class="grid"></div>
+
+  <div class="bottom">
+
+    <span id="preCount">目前選擇 0 / 3</span>
+
+    <button
+      id="preNext"
+      class="primary small"
+      data-i18n="next">
+      下一步 →
+    </button>
+
+  </div>
+
 </section>
 
-<section id="preDone" class="screen hidden center"><div class="big">🎉</div><p class="eyebrow">PRELIMINARY CLEAR</p><h2>預選結束！</h2>
-<p>你選出了 <b id="preN">0</b> 位喜歡的臉。</p><p>接下來進入候選人直接比較的「本選」。</p>
-<button class="primary" onclick="show('mainIntro')">🔥 前往本選</button><button class="secondary" onclick="resetAll()">再做一次預選</button></section>
 
-<section id="mainIntro" class="screen hidden center"><p class="eyebrow">🔥 MAIN ROUND</p><h2>本選</h2>
-<p>請依序選出你喜歡的臉：<br><b>第一名 → 第二名</b>！</p>
-<div class="rules">① 點選最喜歡的臉<br>② 再點選第二喜歡的臉<br><br><b>本選共 3 ROUND。</b><br>越到後面，會比較越接近的候選人。</div>
-<button class="primary" onclick="startMain()">開始本選</button></section>
+<!-- =========================
+     PRE DONE
+========================= -->
 
-<section id="main" class="screen hidden"><div class="head"><div><p class="eyebrow">🔥 MAIN ROUND</p><h2 id="mainTitle"></h2></div><button class="link" onclick="show('home')">回首頁</button></div>
-<p id="mainProgress" class="meta"></p><h3 id="mainPrompt">① 最喜歡哪張臉？</h3><p class="sub">先選第一名 → 再選第二名</p>
-<div id="mainPair" class="duel"></div><button class="undo" onclick="toast('1試合ずつ直感で進める仕様です')">↶ ひとつ前</button></section>
+<section id="preDone" class="screen hidden center">
 
-<section id="mainDone" class="screen hidden center"><div class="big">🔥</div><p class="eyebrow">MAIN ROUND CLEAR</p><h2>本選 3 ROUND 結束！</h2>
-<p>候選人的比較已經完成。</p><p>接下來進入決定18位決賽候選人的「本選 最終戰」。</p>
-<button class="primary" onclick="show('lastIntro')">⚔️ 前往本選最終戰</button><button class="secondary" onclick="resetAll()">回首頁</button></section>
+  <div class="big">🎉</div>
 
-<section id="lastIntro" class="screen hidden center"><p class="eyebrow">⚔️ LAST BATTLE</p><h2>本選 最終戰</h2>
-<p>為了爭取進入決賽<br>最後一戰！</p>
-<div class="rules">再次比較接近晉級線的候選人。<br><br><b>本選前段的候選人保留決賽資格。</b><br>只重新比較晉級線附近的人。</div>
-<button class="primary" onclick="startLast()">開始最終戰</button></section>
+  <p class="eyebrow">PRELIMINARY CLEAR</p>
 
-<section id="last" class="screen hidden"><div class="head"><div><p class="eyebrow">⚔️ LAST BATTLE</p><h2>最終戰 1 / 1</h2></div><button class="link" onclick="show('home')">回首頁</button></div>
-<h3>① 最喜歡哪張臉？</h3><p class="sub">選出你想進入決賽的人</p><div id="lastPair" class="duel"></div></section>
+  <h2 data-i18n="preDoneTitle">
+    預選結束！
+  </h2>
 
-<section id="finalists" class="screen hidden center"><div class="big">👑</div><p class="eyebrow">FINALISTS</p><h2>18位決賽候選人決定！</h2>
-<p>接下來完全二選一。<br>從第一名到第九名，決定你的喜歡的臉 TOP9。</p>
-<button class="primary" onclick="startFinal()">👑 前往決賽</button><button class="secondary" onclick="resetAll()">回首頁</button></section>
+  <p>
+    <span data-i18n="selectedFaces">你選出了</span>
+    <b id="preN">0</b>
+    <span data-i18n="people">位喜歡的臉。</span>
+  </p>
 
-<section id="final" class="screen hidden"><div class="head"><div><p class="eyebrow">👑 FINAL ROUND</p><h2>決賽 TOP9 選拔中</h2></div><button class="link" onclick="show('home')">回首頁</button></div>
-<h3>你比較喜歡哪張臉？</h3><p class="sub">憑直覺點選一人。TOP9 確定後就結束。</p>
-<div class="status"><b id="finalProgress">最終戰比較</b></div><div id="finalPrompt" class="prompt">你比較喜歡哪張臉？</div><div id="finalPair" class="duel"></div></section>
+  <p data-i18n="goMainDescription">
+    接下來進入候選人直接比較的「本選」。
+  </p>
 
-<section id="result" class="screen hidden"><div class="resultHead"><p class="eyebrow">YOUR SUKIGAO 9</p>
-<h2>你的<br><strong>泰國女藝人<br>顏值理想型 TOP9</strong> 👑</h2>
-<div id="resultGrid" class="resultGrid"></div><div class="table"><h3>TOP9</h3><ol id="resultList"></ol></div>
-<button class="primary" onclick="copyResult()">複製結果文字</button><button class="secondary" onclick="resetAll()">再做一次</button>
-<p class="note">非官方粉絲製作網站。圖片、姓名等權利歸屬於各自的權利人。</p></section>
+  <button
+    class="primary"
+    onclick="show('mainIntro')"
+    data-i18n="goMain">
+    🔥 前往本選
+  </button>
 
-<div id="toast" class="toast"></div></div><script src="script.js"></script></body></html>
+  <button
+    class="secondary"
+    onclick="resetAll()"
+    data-i18n="redoPre">
+    再做一次預選
+  </button>
+
+</section>
+
+
+<!-- =========================
+     MAIN INTRO
+========================= -->
+
+<section id="mainIntro" class="screen hidden center">
+
+  <p class="eyebrow">🔥 MAIN ROUND</p>
+
+  <h2 data-i18n="mainTitle">本選</h2>
+
+  <p data-i18n-html="mainDescription">
+    請依序選出你喜歡的臉：<br>
+    <b>第一名 → 第二名</b>！
+  </p>
+
+  <div class="rules" data-i18n-html="mainRules">
+    ① 點選最喜歡的臉<br>
+    ② 再點選第二喜歡的臉<br><br>
+    <b>本選共 3 ROUND。</b><br>
+    越到後面，會比較越接近的候選人。
+  </div>
+
+  <button
+    class="primary"
+    onclick="startMain()"
+    data-i18n="startMain">
+    開始本選
+  </button>
+
+</section>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<section id="main" class="screen hidden">
+
+  <div class="head">
+
+    <div>
+      <p class="eyebrow">🔥 MAIN ROUND</p>
+      <h2 id="mainTitle"></h2>
+    </div>
+
+    <button
+      class="link"
+      onclick="show('home')"
+      data-i18n="home">
+      回首頁
+    </button>
+
+  </div>
+
+  <p id="mainProgress" class="meta"></p>
+
+  <h3 id="mainPrompt"></h3>
+
+  <p class="sub" data-i18n="mainHint">
+    先選第一名 → 再選第二名
+  </p>
+
+  <div id="mainPair" class="duel"></div>
+
+  <button
+    class="undo"
+    onclick="toast()"
+    data-i18n="undo">
+    ↶ 上一步
+  </button>
+
+</section>
+
+
+<!-- =========================
+     MAIN DONE
+========================= -->
+
+<section id="mainDone" class="screen hidden center">
+
+  <div class="big">🔥</div>
+
+  <p class="eyebrow">MAIN ROUND CLEAR</p>
+
+  <h2 data-i18n="mainDoneTitle">
+    本選 3 ROUND 結束！
+  </h2>
+
+  <p data-i18n="mainDoneText">
+    候選人的比較已經完成。
+  </p>
+
+  <p data-i18n="mainDoneText2">
+    接下來進入決定18位決賽候選人的「本選 最終戰」。
+  </p>
+
+  <button
+    class="primary"
+    onclick="show('lastIntro')"
+    data-i18n="goLast">
+    ⚔️ 前往本選最終戰
+  </button>
+
+  <button
+    class="secondary"
+    onclick="resetAll()"
+    data-i18n="home">
+    回首頁
+  </button>
+
+</section>
+
+
+<!-- =========================
+     LAST INTRO
+========================= -->
+
+<section id="lastIntro" class="screen hidden center">
+
+  <p class="eyebrow">⚔️ LAST BATTLE</p>
+
+  <h2 data-i18n="lastTitle">
+    本選 最終戰
+  </h2>
+
+  <p data-i18n-html="lastDescription">
+    為了爭取進入決賽<br>
+    最後一戰！
+  </p>
+
+  <div class="rules" data-i18n-html="lastRules">
+    再次比較接近晉級線的候選人。<br><br>
+    <b>本選前段的候選人保留決賽資格。</b><br>
+    只重新比較晉級線附近的人。
+  </div>
+
+  <button
+    class="primary"
+    onclick="startLast()"
+    data-i18n="startLast">
+    開始最終戰
+  </button>
+
+</section>
+
+
+<!-- =========================
+     LAST
+========================= -->
+
+<section id="last" class="screen hidden">
+
+  <div class="head">
+
+    <div>
+      <p class="eyebrow">⚔️ LAST BATTLE</p>
+      <h2 data-i18n="lastBattle">
+        最終戰
+      </h2>
+    </div>
+
+    <button
+      class="link"
+      onclick="show('home')"
+      data-i18n="home">
+      回首頁
+    </button>
+
+  </div>
+
+  <h3 id="lastPrompt"></h3>
+
+  <p class="sub" data-i18n="lastHint">
+    選出你想進入決賽的人
+  </p>
+
+  <div id="lastPair" class="duel"></div>
+
+</section>
+
+
+<!-- =========================
+     FINALISTS
+========================= -->
+
+<section id="finalists" class="screen hidden center">
+
+  <div class="big">👑</div>
+
+  <p class="eyebrow">FINALISTS</p>
+
+  <h2 data-i18n="finalistsTitle">
+    18位決賽候選人決定！
+  </h2>
+
+  <p data-i18n-html="finalistsText">
+    接下來完全二選一。<br>
+    從第一名到第九名，決定你的喜歡的臉 TOP9。
+  </p>
+
+  <button
+    class="primary"
+    onclick="startFinal()"
+    data-i18n="goFinal">
+    👑 前往決賽
+  </button>
+
+  <button
+    class="secondary"
+    onclick="resetAll()"
+    data-i18n="home">
+    回首頁
+  </button>
+
+</section>
+
+
+<!-- =========================
+     FINAL
+========================= -->
+
+<section id="final" class="screen hidden">
+
+  <div class="head">
+
+    <div>
+      <p class="eyebrow">👑 FINAL ROUND</p>
+
+      <h2 data-i18n="finalTitle">
+        決賽 TOP9 選拔中
+      </h2>
+    </div>
+
+    <button
+      class="link"
+      onclick="show('home')"
+      data-i18n="home">
+      回首頁
+    </button>
+
+  </div>
+
+  <h3 data-i18n="finalQuestion">
+    你比較喜歡哪張臉？
+  </h3>
+
+  <p class="sub" data-i18n="finalHint">
+    憑直覺點選一人。TOP9 確定後就結束。
+  </p>
+
+  <div class="status">
+    <b id="finalProgress"></b>
+  </div>
+
+  <div
+    id="finalPrompt"
+    class="prompt">
+  </div>
+
+  <div id="finalPair" class="duel"></div>
+
+</section>
+
+
+<!-- =========================
+     RESULT
+========================= -->
+
+<section id="result" class="screen hidden">
+
+  <div class="resultHead">
+
+    <p class="eyebrow">YOUR SUKIGAO 9</p>
+
+    <h2 data-i18n-html="resultTitle">
+      你的<br>
+      <strong>泰國女藝人<br>顏值理想型 TOP9</strong> 👑
+    </h2>
+
+  </div>
+
+  <div id="resultGrid" class="resultGrid"></div>
+
+  <div class="table">
+
+    <h3>TOP9</h3>
+
+    <ol id="resultList"></ol>
+
+  </div>
+
+  <button
+    class="primary"
+    onclick="copyResult()"
+    data-i18n="copyResult">
+    複製結果文字
+  </button>
+
+  <button
+    class="secondary"
+    onclick="changeLanguage()"
+    data-i18n="changeLanguage">
+    重新選擇語言
+  </button>
+
+  <button
+    class="secondary"
+    onclick="resetAll()"
+    data-i18n="redo">
+    再做一次
+  </button>
+
+  <p
+    class="note"
+    data-i18n="copyright">
+    非官方粉絲製作網站。圖片、姓名等權利歸屬於各自的權利人。
+  </p>
+
+</section>
+
+
+<div id="toast" class="toast"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
